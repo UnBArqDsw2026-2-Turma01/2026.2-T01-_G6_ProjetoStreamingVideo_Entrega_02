@@ -10,6 +10,7 @@
     - [<span style="color:#2563eb">🔵 1.1.1. SubEquipe_01</span>](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.SubEquipe_01.md)
       - [1.1.1.1. FOCO_01 - Modelagem Estática](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.Foco01.ModelagemEstatica.md)
       - [1.1.1.2. FOCO_02 - Modelagem Dinâmica](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.Foco02.ModelagemDinamica.md)
+        - [1.1.1.2.1. Evidências - Diagrama de Sequência](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.1.Foco02.Evidencias.md)
       - [1.1.1.3. FOCO_03 - IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.Foco03.IAGenerativa.md)
       - [1.1.1.4. Metodologia](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.4.Metodologia.md)
       - [1.1.1.5. Rastreabilidade & Elos](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Rastreabilidade.md)
@@ -24,5 +25,7 @@
 - **Projeto**
   - Atas
     - [Reunião Geral 01 — 11/09/2026](/Projeto/Atas/ata-G01-2026-09-11.md)
+    - SubEquipe_01
+      - [S1_01 — 15/09/2026](/Projeto/Atas/Atas_Sg1/ata-S1-01-2026-09-15.md)
     - SubEquipe_02
       - [S2_01 — 11/09/2026](/Projeto/Atas/Atas_Sg2/ata-S2-01-2026-09-11.md)

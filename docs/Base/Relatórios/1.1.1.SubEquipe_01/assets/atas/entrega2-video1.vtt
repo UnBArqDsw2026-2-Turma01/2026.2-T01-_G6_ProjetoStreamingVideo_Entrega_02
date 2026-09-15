@@ -1,0 +1,1085 @@
+WEBVTT
+
+01e5a034-685a-4a31-a55a-d1be960724a5/7-0
+00:00:05.117 --> 00:00:09.024
+<v Lucas Andrade Zanetti>Tá, vou começar aqui a reunião então,
+já tá gravando É,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/7-1
+00:00:09.024 --> 00:00:14.397
+<v Lucas Andrade Zanetti>vamos começar então a nossa primeira
+reunião aqui da entrega 2 do subgrupo 1</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/9-0
+00:00:15.277 --> 00:00:20.288
+<v Lucas Andrade Zanetti>onde a gente tem dois focos a se entregar,
+tirando a IA generativa,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/9-1
+00:00:20.288 --> 00:00:23.825
+<v Lucas Andrade Zanetti>que depende do que a gente vai fazer dos
+focos,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/9-2
+00:00:23.825 --> 00:00:29.574
+<v Lucas Andrade Zanetti>que é justamente dessa fase a gente
+entregar a modelagem estática e modelagem</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/9-3
+00:00:29.574 --> 00:00:30.237
+<v Lucas Andrade Zanetti>dinâmica.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/10-0
+00:00:30.637 --> 00:00:34.132
+<v Lucas Andrade Zanetti>A modelagem estática,
+ela é aquela que descreve a estrutura do</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/10-1
+00:00:34.132 --> 00:00:37.960
+<v Lucas Andrade Zanetti>sistema e a modelagem dinâmica é
+justamente aquela que é mais para o</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/10-2
+00:00:37.960 --> 00:00:40.623
+<v Lucas Andrade Zanetti>comportamento, que traz uma sequência.
+Ou seja,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/10-3
+00:00:40.623 --> 00:00:45.117
+<v Lucas Andrade Zanetti>o modelo modelagem estática é o que a
+gente já viu, tipo em O, que é a parte do.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/11-0
+00:00:45.517 --> 00:00:48.682
+<v Lucas Andrade Zanetti>De classes,
+que aí ele não tem uma sequência</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/11-1
+00:00:48.682 --> 00:00:49.597
+<v Lucas Andrade Zanetti>estabelecida.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/12-0
+00:00:50.797 --> 00:00:56.293
+<v Lucas Andrade Zanetti>Ele representa justamente o que existe,
+um componente ali do que existe no</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/12-1
+00:00:56.293 --> 00:00:59.957
+<v Lucas Andrade Zanetti>sistema.
+E para ele eu estava pensando em fazer o</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/12-2
+00:00:59.957 --> 00:01:03.695
+<v Lucas Andrade Zanetti>básico,
+o diagrama de classes que a gente conhece,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/12-3
+00:01:03.695 --> 00:01:08.605
+<v Lucas Andrade Zanetti>e o diagrama de componentes,
+que é outro que eu pensei que a gente</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/12-4
+00:01:08.605 --> 00:01:10.437
+<v Lucas Andrade Zanetti>pode fazer como um extra.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/13-0
+00:01:10.437 --> 00:01:11.997
+<v Lucas Andrade Zanetti>Ele seria além do entrega mínima.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/14-0
+00:01:13.117 --> 00:01:17.737
+<v Lucas Andrade Zanetti>E para o modelagem dinâmica,
+eu pensei em fazer um diagrama de</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/14-1
+00:01:17.737 --> 00:01:23.530
+<v Lucas Andrade Zanetti>sequência e possivelmente um diagrama de
+estados do ciclo de vida de uma live,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/14-2
+00:01:23.530 --> 00:01:27.490
+<v Lucas Andrade Zanetti>por exemplo,
+ou a gente pode fazer qualquer outro aí,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/14-3
+00:01:27.490 --> 00:01:29.837
+<v Lucas Andrade Zanetti>a gente pode pensar até lá, mas.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/15-0
+00:01:30.077 --> 00:01:33.179
+<v Lucas Andrade Zanetti>Por agora, por essa reunião,
+a gente vai estabelecer mais da entrega</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/15-1
+00:01:33.179 --> 00:01:35.517
+<v Lucas Andrade Zanetti>mínima aqui.
+O do extra a gente pode pensar depois.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/16-0
+00:01:37.597 --> 00:01:37.797
+<v Lucas Andrade Zanetti>And.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/17-0
+00:01:39.597 --> 00:01:45.328
+<v Lucas Andrade Zanetti>Tá, eu recomendar uma ferramenta aqui,
+que é justamente o que a professora</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/17-1
+00:01:45.328 --> 00:01:50.983
+<v Lucas Andrade Zanetti>recomenda, que é essa plan to ML,
+que ela é para fazer diagramas por meio</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/17-2
+00:01:50.983 --> 00:01:54.957
+<v Lucas Andrade Zanetti>de texto ou de prompt,
+ela tem integração com o IA.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/18-0
+00:01:55.197 --> 00:01:59.946
+<v Lucas Andrade Zanetti>Então ela facilita essa criação.
+Então tudo que você fizer aqui com IA,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/18-1
+00:01:59.946 --> 00:02:05.091
+<v Lucas Andrade Zanetti>lembre que a gente tem um terceiro foco,
+que é para registrar esse uso da IA.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/18-2
+00:02:05.091 --> 00:02:08.257
+<v Lucas Andrade Zanetti>Então é importante sempre estar
+registrando lá.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/18-3
+00:02:08.257 --> 00:02:11.357
+<v Lucas Andrade Zanetti>Mas se for fazer na mão mesmo, tem o draw.
+io.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/19-0
+00:02:12.077 --> 00:02:14.404
+<v Lucas Andrade Zanetti>Eu acho,
+tem outro que a professora também</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/19-1
+00:02:14.404 --> 00:02:17.328
+<v Lucas Andrade Zanetti>recomenda,
+mas eu não lembro agora qual que é o nome,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/19-2
+00:02:17.328 --> 00:02:21.117
+<v Lucas Andrade Zanetti>acho que é flow chart, o nome dele.
+Tem um draw IO que dá para fazer.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/20-0
+00:02:22.237 --> 00:02:28.158
+<v Lucas Andrade Zanetti>Mas eu recomendo fazer por aqui.
+É porque esse padrãozinho aqui,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/20-1
+00:02:28.158 --> 00:02:33.988
+<v Lucas Andrade Zanetti>ele é bem organizado,
+bem tipo entendível de dividir entre eles</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/21-0
+00:02:33.757 --> 00:02:36.477
+<v Heitor Macedo Ricardo>Questionário. Questionário.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/20-2
+00:02:33.988 --> 00:02:34.717
+<v Lucas Andrade Zanetti>aqui. É.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/22-0
+00:02:37.277 --> 00:02:37.757
+<v Lucas Andrade Zanetti>Como é que é?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/23-0
+00:02:38.477 --> 00:02:41.117
+<v Matheus Lemes>Você não está compartilhando,
+você só está falando.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/24-0
+00:02:39.797 --> 00:02:41.677
+<v Heitor Macedo Ricardo>Thanks, I think.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/25-0
+00:02:40.237 --> 00:02:44.545
+<v Lucas Andrade Zanetti>Ah é verdade Ah mas eu vou compartilhar
+agora mas não tem problema de não ter</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/25-1
+00:02:44.545 --> 00:02:47.197
+<v Lucas Andrade Zanetti>compartilhado eu vou mostrar rapidamente
+que eu</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/26-0
+00:02:49.997 --> 00:02:50.637
+<v Lucas Andrade Zanetti>Doubles of the name.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/27-0
+00:02:53.117 --> 00:02:53.517
+<v Heitor Macedo Ricardo>Hello.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/28-0
+00:02:53.997 --> 00:02:54.637
+<v Matheus Lemes>Ah, agora tá.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/29-0
+00:02:54.237 --> 00:02:56.812
+<v Lucas Andrade Zanetti>Tá,
+aí essa é a ferramenta que eu estava</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/29-1
+00:02:56.812 --> 00:03:01.396
+<v Lucas Andrade Zanetti>falando, que é o do plan to UML,
+que é justamente que usa um texto aqui,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/29-2
+00:03:01.396 --> 00:03:04.536
+<v Lucas Andrade Zanetti>você preenche por meio de texto,
+tem o uso da IA,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/29-3
+00:03:04.536 --> 00:03:07.738
+<v Lucas Andrade Zanetti>dessa parte que a IA registra lá,
+e tem o Draw IO,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/29-4
+00:03:07.738 --> 00:03:12.637
+<v Lucas Andrade Zanetti>que é o clássico que muitas pessoas usam,
+que dá para fazer a mão aqui mesmo.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/30-0
+00:03:12.957 --> 00:03:16.717
+<v Lucas Andrade Zanetti>É e avaliando com IA depois para ver se
+está tudo certo.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/31-0
+00:03:18.277 --> 00:03:18.477
+<v Lucas Andrade Zanetti>Um</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/32-0
+00:03:19.757 --> 00:03:23.838
+<v Lucas Andrade Zanetti>E diagrama é de dinâmico também tem aqui,
+você vê aqui por cima,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/32-1
+00:03:23.838 --> 00:03:27.793
+<v Lucas Andrade Zanetti>você tem o sequência de classe,
+que é o que a gente vai fazer,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/32-2
+00:03:27.793 --> 00:03:32.125
+<v Lucas Andrade Zanetti>o de componente, que é o extra,
+que depois a gente vai fazer também.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/32-3
+00:03:32.125 --> 00:03:33.757
+<v Lucas Andrade Zanetti>E é isso aí, agora eu que.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/33-0
+00:03:32.597 --> 00:03:37.477
+<v Heitor Macedo Ricardo>O mesmo, só negócio, só negócio,
+só negócio, Alice e Bob, e o</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/35-0
+00:03:40.477 --> 00:03:43.757
+<v Lucas Andrade Zanetti>Fala isso não, mano. Fala isso não.
+Fala isso não.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/34-0
+00:03:42.877 --> 00:03:43.517
+<v Heitor Macedo Ricardo>Dramas.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/36-0
+00:03:46.317 --> 00:03:49.949
+<v Lucas Andrade Zanetti>É, tá,
+então o que eu queria de estabelecer aqui</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/36-1
+00:03:49.949 --> 00:03:55.581
+<v Lucas Andrade Zanetti>é só pra gente não ter que fazer em
+reunião e não ficar atrasando a vida de</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/36-2
+00:03:55.581 --> 00:04:01.437
+<v Lucas Andrade Zanetti>todo mundo separar de uma forma que todos
+consigam participar no diagrama, né?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/38-0
+00:04:02.317 --> 00:04:07.614
+<v Lucas Andrade Zanetti>Então o que eu pensei, justamente,
+no estático a gente não tem como fugir,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/37-0
+00:04:03.117 --> 00:04:03.277
+<v Heitor Macedo Ricardo>Okay.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/38-1
+00:04:07.614 --> 00:04:10.792
+<v Lucas Andrade Zanetti>a gente vai meio que fazer o mesmo
+diagrama,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/38-2
+00:04:10.792 --> 00:04:16.795
+<v Lucas Andrade Zanetti>mas a gente consegue dividir ele no mesmo,
+em vários componentes, em vários pedaços,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/38-3
+00:04:16.795 --> 00:04:19.197
+<v Lucas Andrade Zanetti>um diagrama de estático de classe.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/39-0
+00:04:19.997 --> 00:04:25.524
+<v Lucas Andrade Zanetti>Lembrando que o nosso tema do subgrupo 1
+é justamente a parte de transmissão ao</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/39-1
+00:04:25.524 --> 00:04:29.670
+<v Lucas Andrade Zanetti>vivo, UGC, clipagem,
+que a gente tem que pensar nessa parte</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/39-2
+00:04:29.670 --> 00:04:35.197
+<v Lucas Andrade Zanetti>toda E eu queria fazer alguma coisa assim
+A gente tem, por exemplo, um campo de</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/40-0
+00:04:35.437 --> 00:04:38.157
+<v Lucas Andrade Zanetti>É usuário, usuário.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/41-0
+00:04:40.397 --> 00:04:43.757
+<v Lucas Andrade Zanetti>Usuário é e canais.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/43-0
+00:04:45.837 --> 00:04:49.997
+<v Heitor Macedo Ricardo>Aham,
+eu acho que outro componente pra abaixo</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/42-0
+00:04:45.997 --> 00:04:48.957
+<v Lucas Andrade Zanetti>Por exemplo, a gente teria outro campo.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/43-1
+00:04:49.997 --> 00:04:52.077
+<v Heitor Macedo Ricardo>do vídeo da reprodução.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/44-0
+00:04:54.797 --> 00:04:55.757
+<v Lucas Andrade Zanetti>Como é que é? Eu não ouvi.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/45-0
+00:04:56.317 --> 00:04:58.837
+<v Heitor Macedo Ricardo>Uma parte do da reprodução que eu vou do
+vídeo.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/48-0
+00:04:59.357 --> 00:05:04.548
+<v Lucas Andrade Zanetti>Assim, para reproduzir na tela do usuário,
+né? Então reproduzir, reprodução,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/46-0
+00:05:01.997 --> 00:05:02.157
+<v Heitor Macedo Ricardo>Okay.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/48-1
+00:05:04.548 --> 00:05:05.357
+<v Lucas Andrade Zanetti>fazer assim.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/49-0
+00:05:07.397 --> 00:05:12.330
+<v Lucas Andrade Zanetti>Opa, aí tá bom,
+botar aqui embaixo que tem um antes do da</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/49-1
+00:05:12.330 --> 00:05:14.797
+<v Lucas Andrade Zanetti>reprodução, né, que é o cara.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/50-0
+00:05:16.477 --> 00:05:22.942
+<v Lucas Andrade Zanetti>seria alguma coisa tipo o conteúdo que
+esse usuário ele vai gerar pra cá, né?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/50-1
+00:05:22.942 --> 00:05:23.357
+<v Lucas Andrade Zanetti>Então</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/51-0
+00:05:24.317 --> 00:05:25.677
+<v Lucas Andrade Zanetti>É conteúdo, vou botar só.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/52-0
+00:05:31.837 --> 00:05:33.597
+<v Lucas Andrade Zanetti>nesse processo a gente tem</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/53-0
+00:05:34.797 --> 00:05:37.837
+<v Lucas Andrade Zanetti>Um serviço de domínio aqui.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/54-0
+00:05:38.757 --> 00:05:41.277
+<v Lucas Andrade Zanetti>Então, domínio, outra serviço aqui mesmo.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/55-0
+00:05:42.317 --> 00:05:43.317
+<v Lucas Andrade Zanetti>Serviço.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/56-0
+00:05:45.037 --> 00:05:46.637
+<v Lucas Andrade Zanetti>Serviço de domínio.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/57-0
+00:05:48.037 --> 00:05:48.717
+<v Lucas Andrade Zanetti>Dominion.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/58-0
+00:05:52.317 --> 00:05:56.241
+<v Lucas Andrade Zanetti>O que que Zac vai fazer?
+Isso aqui vai ser responsável pelo</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/58-1
+00:05:56.241 --> 00:05:59.576
+<v Lucas Andrade Zanetti>playback,
+que é justamente essa parte da clipagem.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/58-2
+00:05:59.576 --> 00:06:03.565
+<v Lucas Andrade Zanetti>Vai ter um serviço também de um clip
+service para o usuário.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/58-3
+00:06:03.565 --> 00:06:08.797
+<v Lucas Andrade Zanetti>Vai ter um A aqui também vai ter a parte
+do livestream de como é que vai fazer.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/59-0
+00:06:09.117 --> 00:06:15.018
+<v Lucas Andrade Zanetti>O serviço que vai permitir o live stream
+para o usuário e diversos outros fatores</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/59-1
+00:06:15.018 --> 00:06:19.480
+<v Lucas Andrade Zanetti>aqui. Aí o que intuita aqui,
+como eu separei justamente em 4,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/59-2
+00:06:19.480 --> 00:06:24.877
+<v Lucas Andrade Zanetti>pode até ser que um pode até que você
+pode até que tenha outro campo aqui.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/60-0
+00:06:25.197 --> 00:06:29.525
+<v Lucas Andrade Zanetti>Mas isso a gente provavelmente vai
+englobar dentro de algum desses assim,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/60-1
+00:06:29.525 --> 00:06:33.677
+<v Lucas Andrade Zanetti>de algum outros componentes.
+Mas o importante é que a gente estabeleça</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/60-2
+00:06:33.677 --> 00:06:36.425
+<v Lucas Andrade Zanetti>em 4,
+dividida em 4 para cada um poder fazer e</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/60-3
+00:06:36.425 --> 00:06:39.993
+<v Lucas Andrade Zanetti>depois a gente junta essas relações.
+Então, se, por exemplo,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/60-4
+00:06:39.993 --> 00:06:42.157
+<v Lucas Andrade Zanetti>alguém está fazendo isso do conteúdo.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/61-0
+00:06:42.477 --> 00:06:46.661
+<v Lucas Andrade Zanetti>Já pense nas entradas do usuário.
+Isso aqui é importante para a gente não</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/61-1
+00:06:46.661 --> 00:06:50.618
+<v Lucas Andrade Zanetti>ter muitos conflitos depois,
+mas o intuito é depois a gente fazer uma</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/61-2
+00:06:50.618 --> 00:06:54.237
+<v Lucas Andrade Zanetti>breve reunião de quando a gente for fazer
+o extra, né? A gente,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/61-3
+00:06:54.237 --> 00:06:57.347
+<v Lucas Andrade Zanetti>no início dessa reunião,
+a gente só revisa isso daqui,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/61-4
+00:06:57.347 --> 00:07:01.757
+<v Lucas Andrade Zanetti>dá uma revisão para ver se está tudo
+certo e encaixa cada um dos componentes.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/62-0
+00:07:04.157 --> 00:07:06.893
+<v Lucas Andrade Zanetti>E aqui a gente estabeleceria o que cada
+um faria. É,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/62-1
+00:07:06.893 --> 00:07:11.024
+<v Lucas Andrade Zanetti>alguém quer já pegar alguma parte aqui
+para a gente já estabelecer isso aqui de</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/62-2
+00:07:11.024 --> 00:07:11.437
+<v Lucas Andrade Zanetti>uma vez?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/63-0
+00:07:11.837 --> 00:07:13.677
+<v Heitor Macedo Ricardo>Eu posso ficar com a parte de reprodução
+de lixo.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/64-0
+00:07:14.077 --> 00:07:15.277
+<v Pedro Druck Montalvao Reis>Posso ficar com o conteúdo?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/65-0
+00:07:16.597 --> 00:07:16.877
+<v Lucas Andrade Zanetti>Good.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/66-0
+00:07:17.437 --> 00:07:21.677
+<v Matheus Lemes>com mim tu quer ficar com o usuário e
+canais ou com serviço de domínio?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/67-0
+00:07:22.517 --> 00:07:23.837
+<v Lucas Andrade Zanetti>Eu posso pegar o serviço domínio?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/68-0
+00:07:24.797 --> 00:07:26.717
+<v Matheus Lemes>Beleza, I'll show com o usuário com nós.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/74-0
+00:07:27.997 --> 00:07:31.692
+<v Lucas Andrade Zanetti>Tá, eu não estou anotando aqui,
+mas todo mundo sabe.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/69-0
+00:07:31.357 --> 00:07:31.717
+<v Matheus Lemes>Mhm.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/74-1
+00:07:31.692 --> 00:07:35.387
+<v Lucas Andrade Zanetti>Não faz muito sentido ficar anotando. Tá,
+aí lembra,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/70-0
+00:07:33.517 --> 00:07:33.917
+<v Pedro Druck Montalvao Reis>Perfect.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/74-2
+00:07:35.387 --> 00:07:39.779
+<v Lucas Andrade Zanetti>todo mundo aqui lembra como é que é um
+diagrama de classe, né?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/72-0
+00:07:39.357 --> 00:07:40.437
+<v Pedro Druck Montalvao Reis>Ah, sim, pô.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/71-0
+00:07:39.597 --> 00:07:39.837
+<v Matheus Lemes>Sim.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/74-3
+00:07:39.779 --> 00:07:42.917
+<v Lucas Andrade Zanetti>Qualquer coisa é só pesquisar de boa.
+É bem.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/76-0
+00:07:42.197 --> 00:07:46.157
+<v Pedro Druck Montalvao Reis>Minha professora explicou e e o também,
+eu lembro que eu fiz bastante.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/75-0
+00:07:44.637 --> 00:07:45.237
+<v Lucas Andrade Zanetti>Mm-hmm.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/77-0
+00:07:48.237 --> 00:07:52.157
+<v Lucas Andrade Zanetti>tá agora eu vou falar um pouco sobre a
+questão dos</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/78-0
+00:07:53.277 --> 00:07:54.317
+<v Lucas Andrade Zanetti>Tu.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/79-0
+00:07:55.917 --> 00:07:58.557
+<v Lucas Andrade Zanetti>diagrama de diagrama dinâmico né</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/80-0
+00:08:00.397 --> 00:08:05.254
+<v Lucas Andrade Zanetti>que seria a gente começaria fazendo de
+sequência e como diagramas de sequência</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/80-1
+00:08:05.254 --> 00:08:09.866
+<v Lucas Andrade Zanetti>eles são bem longos eles envolvem várias
+entidades assim vários fluxos que</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/80-2
+00:08:09.866 --> 00:08:14.600
+<v Lucas Andrade Zanetti>realmente ocupa bastante da tela eu
+pensei em dividir a partir dos temas que</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/80-3
+00:08:14.600 --> 00:08:15.277
+<v Lucas Andrade Zanetti>a gente tem</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/81-0
+00:08:16.077 --> 00:08:19.422
+<v Lucas Andrade Zanetti>Então,
+justamente a partir dos temas de</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/81-1
+00:08:19.422 --> 00:08:25.862
+<v Lucas Andrade Zanetti>transmissão ao vivo, UGC e clipagem.
+Então cada um pegaria um desses temas e</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/81-2
+00:08:25.862 --> 00:08:30.797
+<v Lucas Andrade Zanetti>faria esse diagrama sozinho, né? No caso,
+um dos diagramas</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/83-0
+00:08:31.197 --> 00:08:35.405
+<v Lucas Andrade Zanetti>vão ter que ser feito em dupla,
+porque a gente tem 3 temas e o intuito é</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/82-0
+00:08:33.757 --> 00:08:34.117
+<v Matheus Lemes>Mhm.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/83-1
+00:08:35.405 --> 00:08:39.497
+<v Lucas Andrade Zanetti>a gente fazer isso e a gente revisar
+entre a gente, porque não é algo,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/83-2
+00:08:39.497 --> 00:08:43.071
+<v Lucas Andrade Zanetti>dá pra até conectar,
+mas como é um negócio grande eu não acho</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/83-3
+00:08:43.071 --> 00:08:47.395
+<v Lucas Andrade Zanetti>que compensa conectar ele depois,
+mas deixar ele separado mesmo e entregar</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/83-4
+00:08:47.395 --> 00:08:48.317
+<v Lucas Andrade Zanetti>ele dessa forma.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/84-0
+00:08:48.797 --> 00:08:53.340
+<v Lucas Andrade Zanetti>E outra coisa que é importante que lembra
+de deixar rastreável é dessa da última</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/84-1
+00:08:53.340 --> 00:08:57.323
+<v Lucas Andrade Zanetti>vez que eu conversei com a professora,
+ela não brigou, mas tipo assim,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/84-2
+00:08:57.323 --> 00:08:59.791
+<v Lucas Andrade Zanetti>ela recomendou que eu estava fazendo
+todas,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/84-3
+00:08:59.791 --> 00:09:03.437
+<v Lucas Andrade Zanetti>eu estava fazendo todo a maioria dos
+comites no de documentação.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/86-0
+00:09:03.837 --> 00:09:06.584
+<v Lucas Andrade Zanetti>Eu botava lá o crédito de vocês de coauto
+e etc.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/86-1
+00:09:06.584 --> 00:09:10.844
+<v Lucas Andrade Zanetti>Mas como eu estava fazendo o commit o
+tempo todo lá da documentação, acaba,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/86-2
+00:09:10.844 --> 00:09:15.216
+<v Lucas Andrade Zanetti>ela achou que tinha que arrumar isso daí.
+Aí cada um pode fazer o seu próprio</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/86-3
+00:09:15.216 --> 00:09:18.075
+<v Lucas Andrade Zanetti>commit lá para ficar registrado o que
+cada um fez,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/86-4
+00:09:18.075 --> 00:09:19.757
+<v Lucas Andrade Zanetti>porque ela também olha commit.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/85-0
+00:09:20.477 --> 00:09:21.037
+<v Matheus Lemes>Mill is.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/87-0
+00:09:20.557 --> 00:09:23.014
+<v Lucas Andrade Zanetti>É,
+mas ela não disse que ela não disse que é</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/87-1
+00:09:23.014 --> 00:09:26.237
+<v Lucas Andrade Zanetti>problema, tipo,
+isso não vai impactar na nota nada, não é?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/88-0
+00:09:27.197 --> 00:09:32.134
+<v Lucas Andrade Zanetti>Lembra de ela recomendou tirar prints né
+do tirar prints do do que está sendo</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/88-1
+00:09:32.134 --> 00:09:35.868
+<v Lucas Andrade Zanetti>feito para meio que registrar esse
+processo de pensamento.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/88-2
+00:09:35.868 --> 00:09:40.806
+<v Lucas Andrade Zanetti>Lembra de registrar a IA como eu tinha
+falado que é o foco 3 e meio que deixa</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/88-3
+00:09:40.806 --> 00:09:44.477
+<v Lucas Andrade Zanetti>ela falando é a gente a gente já tem os
+temas aqui então.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/89-0
+00:09:44.637 --> 00:09:48.920
+<v Lucas Andrade Zanetti>Seria é transmissão ao vivo,
+GC e clipagem. Aí eu penso aqui,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/89-1
+00:09:48.920 --> 00:09:54.517
+<v Lucas Andrade Zanetti>é quem aqui está com mais dificuldade de
+tempo assim para fazer esses diagramas?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/89-2
+00:09:54.517 --> 00:09:58.317
+<v Lucas Andrade Zanetti>Porque aí nesse caso,
+a gente juntaria com uma pessoa,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/89-3
+00:09:58.317 --> 00:09:59.837
+<v Lucas Andrade Zanetti>uma outra pessoa para.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/90-0
+00:10:03.877 --> 00:10:04.237
+<v Pedro Druck Montalvao Reis>Got it.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/91-0
+00:10:04.277 --> 00:10:05.197
+<v Lucas Andrade Zanetti>Para fazer em dupla.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/92-0
+00:10:05.677 --> 00:10:09.883
+<v Pedro Druck Montalvao Reis>Eu acho que eu e provavelmente até eu
+entrou nesse aspeto por causa que a gente</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/92-1
+00:10:09.883 --> 00:10:12.197
+<v Pedro Druck Montalvao Reis>a gente pegou o projeto de pesquisa,
+não é?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/96-0
+00:10:13.797 --> 00:10:18.965
+<v Pedro Druck Montalvao Reis>Então, pelo menos dá para mim,
+essa semana vai estar bem corrido em</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/96-1
+00:10:18.965 --> 00:10:22.461
+<v Pedro Druck Montalvao Reis>questão é disso,
+então assim fica complicado,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/94-0
+00:10:21.437 --> 00:10:22.477
+<v Matheus Lemes>And Anita.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/96-2
+00:10:22.461 --> 00:10:25.197
+<v Pedro Druck Montalvao Reis>mais complicado, mas assim eu posso.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/97-0
+00:10:23.637 --> 00:10:29.724
+<v Matheus Lemes>Semana está corridinha, tem prova química,
+a entrega sexta e tem o pesquisa no</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/97-1
+00:10:29.724 --> 00:10:30.957
+<v Matheus Lemes>sábado do balão.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/98-0
+00:10:30.037 --> 00:10:32.677
+<v Pedro Druck Montalvao Reis>É, mas assim, se depender,
+eu posso fazer um esforço, tá de boa?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/101-0
+00:10:33.357 --> 00:10:35.875
+<v Lucas Andrade Zanetti>É isso é importante.
+A questão da data também.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/101-1
+00:10:35.875 --> 00:10:38.769
+<v Lucas Andrade Zanetti>Pra deixar claro,
+a entrega é sexta e a gente tem que</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/101-2
+00:10:38.769 --> 00:10:41.877
+<v Lucas Andrade Zanetti>gravar um vídeo.
+Então é importante que quinta a gente já</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/101-3
+00:10:41.877 --> 00:10:44.717
+<v Lucas Andrade Zanetti>tenha tudo pronto pra gente fazer o vídeo
+na quinta.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/99-0
+00:10:42.957 --> 00:10:43.117
+<v Matheus Lemes>Okay.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/100-0
+00:10:45.597 --> 00:10:45.837
+<v Matheus Lemes>Okay.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/102-0
+00:10:46.077 --> 00:10:47.837
+<v Lucas Andrade Zanetti>Então a gente tem que ter uma entrega.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/105-0
+00:10:47.237 --> 00:10:51.757
+<v Heitor Macedo Ricardo>então junta junta o Druck e o Lemes aí aí
+ele se</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/103-0
+00:10:49.357 --> 00:10:49.397
+<v Lucas Andrade Zanetti>Oh.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/104-0
+00:10:51.477 --> 00:10:51.957
+<v Pedro Druck Montalvao Reis>Perfect.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/108-0
+00:10:53.597 --> 00:10:57.280
+<v Lucas Andrade Zanetti>Tá,
+então é questão de tema e eu já querem</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/108-1
+00:10:57.280 --> 00:11:03.277
+<v Lucas Andrade Zanetti>escolher, já sabem o que querem,
+transmissão ao vivo, UGC e clipagem.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/107-0
+00:11:01.237 --> 00:11:01.557
+<v Pedro Druck Montalvao Reis>Boop.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/109-0
+00:11:03.717 --> 00:11:04.837
+<v Pedro Druck Montalvao Reis>Barclay Pieri nyms.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/112-0
+00:11:03.757 --> 00:11:07.837
+<v Heitor Macedo Ricardo>Eu vou ficar transmissão, transmissão.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/110-0
+00:11:05.357 --> 00:11:05.917
+<v Matheus Lemes>What's it?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/111-0
+00:11:07.677 --> 00:11:09.277
+<v Lucas Andrade Zanetti>Tá, eu pego o GC então.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/113-0
+00:11:12.437 --> 00:11:13.277
+<v Lucas Andrade Zanetti>Acho que é isso.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/114-0
+00:11:14.317 --> 00:11:16.317
+<v Lucas Andrade Zanetti>He's in my own ways, fell.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/115-0
+00:11:19.437 --> 00:11:20.437
+<v Matheus Lemes>Acho que não, né?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/116-0
+00:11:20.397 --> 00:11:26.082
+<v Heitor Macedo Ricardo>é só repete a parte lá do que a
+professora tinha reclamado da os comites</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/116-1
+00:11:26.082 --> 00:11:29.197
+<v Heitor Macedo Ricardo>Então como é que a gente vai fazer agora</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/119-0
+00:11:29.997 --> 00:11:33.721
+<v Lucas Andrade Zanetti>É só assim, cada um vai fazer,
+cada um vai fazer alguma coisa,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/117-0
+00:11:31.037 --> 00:11:32.317
+<v Matheus Lemes>Cada um cometa o seu.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/119-1
+00:11:33.721 --> 00:11:38.687
+<v Lucas Andrade Zanetti>vai ter uma rastreabilidade, por exemplo,
+de você tira print lá e você mostra o que</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/119-2
+00:11:38.687 --> 00:11:41.761
+<v Lucas Andrade Zanetti>foi feito agora,
+tipo o seu processo de pensamento,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/119-3
+00:11:41.761 --> 00:11:45.486
+<v Lucas Andrade Zanetti>de desenvolvimento,
+e todo esse processo é importante relatar,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/119-4
+00:11:45.486 --> 00:11:46.077
+<v Lucas Andrade Zanetti>tá ligado?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/118-0
+00:11:46.517 --> 00:11:46.757
+<v Heitor Macedo Ricardo>Okay.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/123-0
+00:11:46.957 --> 00:11:50.420
+<v Lucas Andrade Zanetti>Lá no GitHub,
+aí você mesmo comida para ter o seu</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/120-0
+00:11:48.437 --> 00:11:51.317
+<v Heitor Macedo Ricardo>Okay, fechou. Então, tranquilo.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/123-1
+00:11:50.420 --> 00:11:55.129
+<v Lucas Andrade Zanetti>registro e eu mostro, tá?
+Tem esse PR que eu creio que eu marquei o</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/121-0
+00:11:50.637 --> 00:11:52.077
+<v Pedro Druck Montalvao Reis>Já tem a passazinha lá pra cada um?</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/122-0
+00:11:53.077 --> 00:11:53.917
+<v Pedro Druck Montalvao Reis>I botar os prints.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/123-2
+00:11:55.129 --> 00:11:59.562
+<v Lucas Andrade Zanetti>pessoal para revisar,
+mas aí quem revisar aí só aceita lá o que</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/123-3
+00:11:59.562 --> 00:12:01.917
+<v Lucas Andrade Zanetti>eu só mexi no nosso, no caso aqui.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/124-0
+00:12:02.357 --> 00:12:04.797
+<v Lucas Andrade Zanetti>Deixa eu ver se dá pra ver por aqui? Eu</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/126-0
+00:12:09.917 --> 00:12:17.206
+<v Lucas Andrade Zanetti>Eu criei uma pasta nossa de sub equipe 1
+e já deixei toda formatada aqui por cada</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/126-1
+00:12:17.206 --> 00:12:24.317
+<v Lucas Andrade Zanetti>foco, botar os assets lá, aqui também,
+a partir das evidências, das fotos, etc.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/125-0
+00:12:19.397 --> 00:12:19.837
+<v Pedro Druck Montalvao Reis>Defit.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/128-0
+00:12:24.637 --> 00:12:27.006
+<v Pedro Druck Montalvao Reis>Então,
+mas as fotos pode fazer o commit aí de</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/127-0
+00:12:25.117 --> 00:12:25.597
+<v Lucas Andrade Zanetti>Chugger.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/128-1
+00:12:27.006 --> 00:12:29.117
+<v Pedro Druck Montalvao Reis>boa, tem uma baixinha para cada um assim.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/129-0
+00:12:30.957 --> 00:12:31.037
+<v Lucas Andrade Zanetti>Uh</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/130-0
+00:12:31.997 --> 00:12:34.477
+<v Pedro Druck Montalvao Reis>e é massa eu acho para não ficar mais de
+boa de mim</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/131-0
+00:12:36.157 --> 00:12:39.677
+<v Lucas Andrade Zanetti>Tem que pensar nisso, eu não sei, tipo.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/132-0
+00:12:40.797 --> 00:12:40.957
+<v Heitor Macedo Ricardo>Okay.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/133-0
+00:12:41.437 --> 00:12:44.430
+<v Lucas Andrade Zanetti>A evidência de cada um,
+eu acho que tipo assim,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/133-1
+00:12:44.430 --> 00:12:49.233
+<v Lucas Andrade Zanetti>a gente meio que só botaria um histórico
+no histórico de versão, tipo assim,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/133-2
+00:12:49.233 --> 00:12:52.227
+<v Lucas Andrade Zanetti>você botou lá a foto do diagrama feito
+embaixo,</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/133-3
+00:12:52.227 --> 00:12:57.341
+<v Lucas Andrade Zanetti>aí embaixo você bota a fonte de quem fez
+e botando o link meio que indicando para</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/133-4
+00:12:57.341 --> 00:13:00.397
+<v Lucas Andrade Zanetti>uma print ou para o histórico de versão,
+sei lá.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/134-0
+00:13:00.677 --> 00:13:01.437
+<v Lucas Andrade Zanetti>pro comitê.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/135-0
+00:13:01.997 --> 00:13:04.409
+<v Pedro Druck Montalvao Reis>Ah,
+eu acho que dá para padronizar até no</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/135-1
+00:13:04.409 --> 00:13:06.477
+<v Pedro Druck Montalvao Reis>próprio nome da imagem, tipo de boa.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/136-0
+00:13:08.157 --> 00:13:08.317
+<v Lucas Andrade Zanetti>Uh-huh.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/137-0
+00:13:10.637 --> 00:13:12.237
+<v Lucas Andrade Zanetti>É isso, então, é.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/138-0
+00:13:11.797 --> 00:13:12.237
+<v Pedro Druck Montalvao Reis>Perfect.</v>
+
+01e5a034-685a-4a31-a55a-d1be960724a5/139-0
+00:13:13.597 --> 00:13:17.117
+<v Lucas Andrade Zanetti>Tá, vou parar a gravação aqui,
+eu acho que está suficiente.</v>
