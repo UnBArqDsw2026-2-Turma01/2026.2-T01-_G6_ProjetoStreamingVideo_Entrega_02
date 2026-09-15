@@ -1,0 +1,143 @@
+@startuml sequencia-iniciar-transmissao
+
+title Modelo dinâmico — Iniciar transmissão ao vivo (UGC)
+
+autonumber "<b>[00]"
+
+actor "Criador\n<<UGC>>" as Creator
+
+box "Cliente" #FDFEFE
+  boundary "Aplicação web" as WebApp
+  participant "Encoder" as Encoder
+end box
+
+box "Domínio de transmissão" #F8F9F9
+  control "LiveStreamService" as StreamService
+  database "LiveStreamRepository" as StreamRepository
+end box
+
+box "Pipeline de mídia" #F4F6F7
+  control "Gateway de ingestão" as IngestGateway
+  control "MediaProcessingService" as MediaProcessing
+  database "Origin Storage" as Origin
+end box
+
+participant "PolicyService\n<<externo: Subequipe 3>>" as Policy
+queue "EventBus" as EventBus
+
+== 1. Configuração da transmissão ==
+
+Creator -> WebApp: createStream(config: StreamConfig)
+activate WebApp
+WebApp -> StreamService: createStream(userId, config)
+activate StreamService
+StreamService -> Policy: checkCreatorEligibility(userId)
+activate Policy
+Policy --> StreamService: eligible: boolean
+deactivate Policy
+
+alt#Gold #FDEDEC criador inelegível ou bloqueado
+  StreamService --> WebApp: CreatorNotEligible(reason)
+  WebApp --> Creator: exibir motivo e orientação
+
+else #EAFAF1 criador elegível
+  StreamService -> StreamRepository: save(status = CONFIGURING)
+  activate StreamRepository
+  StreamRepository --> StreamService: liveStream
+  deactivate StreamRepository
+  StreamService --> WebApp: StreamSetup(streamId, ingestEndpoint, credentials)
+  deactivate StreamService
+  WebApp --> Creator: exibir configuração de ingestão
+  deactivate WebApp
+
+  == 2. Conexão do encoder ==
+
+  Creator -> Encoder: configure(ingestEndpoint, credentials)
+  activate Encoder
+  Creator -> Encoder: startCapture()
+  Encoder -> IngestGateway: pushMedia(credentials, firstMediaChunk)
+  activate IngestGateway
+  IngestGateway -> StreamService: validateIngest(credentials)
+  activate StreamService
+
+  alt#Gold #FDEDEC credenciais inválidas
+    StreamService -> StreamRepository: update(status = BLOCKED)
+    StreamService --> IngestGateway: invalid
+    IngestGateway --> Encoder: reject(IngestCredentialsInvalid)
+    Encoder --> Creator: informar falha de conexão
+
+  else #EAFAF1 credenciais válidas
+    StreamService --> IngestGateway: valid(streamId)
+    deactivate StreamService
+
+    == 3. Primeiro segmento e go-live ==
+
+    IngestGateway -> MediaProcessing: forward(firstMediaChunk)
+    activate MediaProcessing
+    MediaProcessing -> MediaProcessing: encodeQualityVariants()
+    MediaProcessing -> MediaProcessing: packageSegmentsAndManifest()
+    MediaProcessing -> Origin: store(manifest, firstSegments)
+    activate Origin
+    Origin --> MediaProcessing: stored
+    deactivate Origin
+    MediaProcessing -> StreamService: firstSegmentAvailable(streamId)
+    deactivate MediaProcessing
+    activate StreamService
+    StreamService -> StreamRepository: update(status = LIVE, startedAt)
+    StreamService -> EventBus: publish(StreamStarted)
+    deactivate StreamService
+    EventBus --> WebApp: StreamStarted(streamId)
+    activate WebApp
+    WebApp --> Creator: transmissão está ao vivo
+    deactivate WebApp
+
+    == 4. Regime permanente ==
+
+    loop enquanto a transmissão estiver ativa
+      Encoder -> IngestGateway: pushMedia(credentials, mediaChunk)
+      IngestGateway -> MediaProcessing: forward(mediaChunk)
+      activate MediaProcessing
+      MediaProcessing -> MediaProcessing: encodeQualityVariants()
+      MediaProcessing -> MediaProcessing: packageSegmentsAndManifest()
+      MediaProcessing -> Origin: store(manifest, segments)
+      activate Origin
+      Origin --> MediaProcessing: stored
+      deactivate Origin
+      deactivate MediaProcessing
+
+      opt amostragem periódica de moderação (UGC)
+        MediaProcessing -> Policy: screenLiveContent(streamId, sampleFrames)
+        activate Policy
+        Policy --> MediaProcessing: verdict
+        deactivate Policy
+        alt#Gold #FDEDEC conteúdo viola política
+          MediaProcessing -> StreamService: policyViolation(streamId, verdict)
+          activate StreamService
+          StreamService -> StreamRepository: update(status = BLOCKED, endedAt)
+          StreamService -> EventBus: publish(StreamBlocked)
+          deactivate StreamService
+          EventBus --> WebApp: StreamBlocked(streamId, reason)
+          WebApp --> Creator: transmissão encerrada por violação
+          IngestGateway --> Encoder: reject(StreamBlocked)
+        end
+      end
+    end
+  end
+  deactivate IngestGateway
+  deactivate Encoder
+end
+
+note over IngestGateway, Origin #FEF9E7
+  Ingestão, transcodificação e empacotamento não foram
+  observados por caixa-preta na Entrega 1. Aqui aparecem
+  como decisões explícitas do modelo de projeto.
+end note
+
+legend right
+  |= Elemento |= Papel |
+  | Criador | produtor do conteúdo (UGC) |
+  | PolicyService | elegibilidade + moderação (externo) |
+  | EventBus | notificação assíncrona de mudança de estado |
+endlegend
+
+@enduml
