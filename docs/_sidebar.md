@@ -9,6 +9,7 @@
   - Relatórios
     - [<span style="color:#2563eb">🔵 1.1.1. SubEquipe_01</span>](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.SubEquipe_01.md)
       - [1.1.1.1. FOCO_01 - Modelagem Estática](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.Foco01.ModelagemEstatica.md)
+        - [1.1.1.1.1. Evidências - Diagrama de Classes](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.1.Foco01.Evidencias.md)
       - [1.1.1.2. FOCO_02 - Modelagem Dinâmica](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.Foco02.ModelagemDinamica.md)
         - [1.1.1.2.1. Evidências - Diagrama de Sequência](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.1.Foco02.Evidencias.md)
       - [1.1.1.3. FOCO_03 - IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.Foco03.IAGenerativa.md)
