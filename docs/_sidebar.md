@@ -1,13 +1,28 @@
 <!-- docs/_sidebar.md -->
 
-- [Home](/docs)
-- [Projetos](/docs/Projeto/Projeto.md)
+- [Home](/)
+- [Introdução à Entrega 02](/Introducao.md)
+- [Projetos](/Projeto/Projeto.md)
 
 - **Base**
-  - [1. Desenho de Software (Modelagem)](/docs/Base/1.Modelagem.md)
+  - [1. Desenho de Software (Modelagem)](/Base/1.Modelagem.md)
   - Relatórios
-      - [1.1.1. SubEquipe_01](/docs/Base/Relatórios/1.1.1.SubEquipe_01.md)
-      - [1.1.2. SubEquipe_02](/docs/Base/Relatórios/1.1.2.SubEquipe_02.md)
-      - [1.1.3. SubEquipe_03](/docs/Base/Relatórios/1.1.3.SubEquipe_03.md)
-  - [1.2. Participações - Modelagem](/docs/Base/1.2.ParticipacoesModelagem.md)
-  - [1.3. Iniciativas Extras - Modelagem](/docs/Base/1.3.IniciativasExtras.md)
+    - [<span style="color:#2563eb">🔵 1.1.1. SubEquipe_01</span>](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.SubEquipe_01.md)
+      - [1.1.1.1. FOCO_01 - Modelagem Estática](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.Foco01.ModelagemEstatica.md)
+      - [1.1.1.2. FOCO_02 - Modelagem Dinâmica](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.Foco02.ModelagemDinamica.md)
+      - [1.1.1.3. FOCO_03 - IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.Foco03.IAGenerativa.md)
+      - [1.1.1.4. Metodologia](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.4.Metodologia.md)
+      - [1.1.1.5. Rastreabilidade & Elos](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Rastreabilidade.md)
+      - [1.1.1.6. Versionamentos & Participações](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.Versionamentos.md)
+      - [1.1.1.7. Diretrizes](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.Diretrizes.md)
+      - [1.1.1.8. Referências](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.8.Referencias.md)
+    - [<span style="color:#16a34a">🟢 1.1.2. SubEquipe_02</span>](/Base/Relatórios/1.1.2.SubEquipe_02.md)
+    - [<span style="color:#d97706">🟠 1.1.3. SubEquipe_03</span>](/Base/Relatórios/1.1.3.SubEquipe_03.md)
+  - [1.2. Participações - Modelagem](/Base/1.2.ParticipacoesModelagem.md)
+  - [1.3. Iniciativas Extras - Modelagem](/Base/1.3.IniciativasExtras.md)
+
+- **Projeto**
+  - Atas
+    - [Reunião Geral 01 — 11/09/2026](/Projeto/Atas/ata-G01-2026-09-11.md)
+    - SubEquipe_02
+      - [S2_01 — 11/09/2026](/Projeto/Atas/Atas_Sg2/ata-S2-01-2026-09-11.md)
