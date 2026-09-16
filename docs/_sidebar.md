@@ -34,3 +34,4 @@
       - [S1_01 — 15/09/2026](/Projeto/Atas/Atas_Sg1/ata-S1-01-2026-09-15.md)
     - SubEquipe_02
       - [S2_01 — 11/09/2026](/Projeto/Atas/Atas_Sg2/ata-S2-01-2026-09-11.md)
+      - [S2_02 — 14/09/2026](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-09-14.md)
