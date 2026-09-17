@@ -1,0 +1,465 @@
+@startuml 03-moderacao-automod-dmca
+skinparam defaultFontName sans-serif
+skinparam defaultFontSize 12
+skinparam roundcorner 8
+skinparam shadowing false
+skinparam linetype ortho
+skinparam nodesep 45
+skinparam ranksep 55
+
+skinparam class {
+    BackgroundColor #FFFFFF
+    BorderColor #334155
+    BorderThickness 1.2
+    HeaderBackgroundColor #F1F5F9
+    FontColor #0F172A
+    FontSize 12
+    AttributeFontColor #334155
+    AttributeFontSize 11
+}
+
+skinparam class<<interface>> {
+    BackgroundColor #F0FDF4
+    BorderColor #16A34A
+    HeaderBackgroundColor #DCFCE7
+}
+
+skinparam class<<enum>> {
+    BackgroundColor #FFFBEB
+    BorderColor #D97706
+    HeaderBackgroundColor #FEF3C7
+}
+
+skinparam class<<abstract>> {
+    BackgroundColor #FAF5FF
+    BorderColor #9333EA
+    HeaderBackgroundColor #F3E8FF
+}
+
+skinparam package {
+    BackgroundColor #F8FAFC
+    BorderColor #64748B
+    BorderThickness 1.5
+    FontColor #1E293B
+    FontStyle bold
+}
+
+skinparam ArrowColor #475569
+skinparam ArrowThickness 1.2
+
+title Sub-equipe 03: Moderação Completa (Chat AutoMod, Shield Mode, Video Safety Kill-Switch & DMCA)
+
+package "Chat AutoMod, Shield Mode & Detection" #FAF5FF {
+    class ShieldModeConfig {
+        + channelId: string
+        + isShieldModeActive: boolean
+        + followerOnlyDurationMinutes: number
+        + isSubOnlyChatForced: boolean
+        + autoModLevelOverride: number
+        + isNoNewChattersAllowed: boolean
+        + activatedAt: Date | null
+        + activatedByUserId: string | null
+        + activate(moderatorId: string): void
+        + deactivate(): void
+    }
+
+    class AutoModPipeline {
+        + channelId: string
+        - rules: Array<IModerationRule>
+        - suspiciousDetector: SuspiciousUserDetector
+        - quarantine: QuarantineQueue
+        - blockedTerms: Array<BlockedTerm>
+        - categoryLevels: Array<ModerationCategoryLevel>
+        + registerRule(rule: IModerationRule): void
+        + inspectMessage(ctx: ModerationContext): Promise<RuleEvaluationResult>
+    }
+
+    class QuarantineQueue {
+        + channelId: string
+        + heldMessages: Array<HeldChatMessageDTO>
+        + enqueue(msg: HeldChatMessageDTO): void
+        + release(messageId: string, approved: boolean, moderatorId: string): void
+    }
+
+    class ModerationCategoryLevel {
+        + category: AutoModCategory
+        + sensitivityLevel: number
+        + isEnabled: boolean
+        + getThresholdScore(): number
+    }
+
+    enum AutoModCategory <<enum>> {
+        HOSTILITY
+        SEXUAL_CONTENT
+        PROFANITY
+        DISCRIMINATION
+    }
+
+    class BlockedTerm {
+        + id: string
+        + channelId: string
+        + termOrPattern: string
+        + isWildcard: boolean
+        + isRegex: boolean
+        + createdAt: Date
+        + matches(text: string): boolean
+    }
+
+    class SuspiciousUserDetector {
+        + confidenceThreshold: number
+        + checkBanEvasion(fingerprint: string, subnet: string, channelId: string): Promise<boolean>
+        + flagSuspiciousActivity(accountId: string, reason: string): void
+    }
+
+    interface IModerationRule <<interface>> {
+        + ruleName: string
+        + isEnabled: boolean
+        + evaluate(ctx: ModerationContext): Promise<RuleEvaluationResult>
+    }
+
+    class RegexFilterRule {
+        + ruleName: string
+        + isEnabled: boolean
+        + patterns: Array<RegExp>
+        + evaluate(ctx: ModerationContext): Promise<RuleEvaluationResult>
+    }
+
+    class BannedWordsRule {
+        + ruleName: string
+        + isEnabled: boolean
+        + wordsList: Set<string>
+        + matchSubstrings: boolean
+        + evaluate(ctx: ModerationContext): Promise<RuleEvaluationResult>
+    }
+
+    class ToxicityClassifierRule {
+        + ruleName: string
+        + isEnabled: boolean
+        + thresholdScore: number
+        + evaluate(ctx: ModerationContext): Promise<RuleEvaluationResult>
+    }
+
+    class ModerationContext {
+        + channelId: string
+        + authorAccountId: string
+        + rawText: string
+        + clientHardwareFingerprint: string
+        + clientIpSubnet: string
+        + accountAgeHours: number
+        + isSubscriber: boolean
+        + isVip: boolean
+    }
+
+    class RuleEvaluationResult {
+        + isTriggered: boolean
+        + recommendedAction: AutoModAction
+        + ruleName: string
+        + matchConfidence: number
+        + details: string
+    }
+
+    enum AutoModAction <<enum>> {
+        ALLOW
+        BLOCK_SILENTLY
+        HOLD_FOR_MOD_REVIEW
+        AUTO_TIMEOUT
+    }
+}
+
+package "Live Video Safety & RTMP Kill-Switch" #FEF2F2 {
+    class LiveVideoSafetyEngine {
+        + streamId: string
+        + sampleIntervalSeconds: number
+        + confidenceThreshold: number
+        + isAnalyzerActive: boolean
+        + extractKeyframe(bufferSegment: ArrayBuffer): Promise<ArrayBuffer>
+        + analyzeKeyframe(frameData: ArrayBuffer): Promise<FrameAnalysisResult>
+        + handleViolationDetected(result: FrameAnalysisResult): Promise<void>
+    }
+
+    class StreamKillSwitch {
+        + ingestNodeEndpoint: string
+        + emergencyTerminateStream(streamId: string, reason: string): Promise<boolean>
+        + dropIngestSocket(channelId: string): Promise<void>
+        + broadcastTOSNotice(channelId: string, message: string): void
+    }
+
+    class FrameAnalysisResult {
+        + hasViolation: boolean
+        + category: SafetyViolationCategory | null
+        + confidenceScore: number
+        + timestampOffsetSec: number
+        + sampleFrameUrl: string
+    }
+
+    enum SafetyViolationCategory <<enum>> {
+        EXPLICIT_NUDITY
+        EXTREME_VIOLENCE_GORE
+        SELF_HARM
+        HATE_SYMBOLS
+        TERRORISM
+    }
+}
+
+package "Audio Recognition & DMCA / Copyright" #EFF6FF {
+    class AudioFingerprintMatcher {
+        + sampleRate: number
+        + matchConfidenceThreshold: number
+        + computeAcousticHash(pcmBuffer: ArrayBuffer): string
+        + queryCopyrightRegistry(fingerprint: string): Promise<AudioMatchResultDTO | null>
+    }
+
+    class AuthorizedMusicCatalogProgram {
+        + isParticipatingDJ: boolean
+        + authorizedTrackIds: Set<string>
+        + isTrackPermitted(trackIsrc: string): boolean
+    }
+
+    class AudioMatchResultDTO {
+        + isrcCode: string
+        + trackTitle: string
+        + artist: string
+        + copyrightHolder: string
+        + confidenceScore: number
+        + matchedSegmentOffsetSec: number
+        + durationSec: number
+        + isPermittedUnderDJProgram: boolean
+    }
+
+    class VODAudioMute {
+        + id: string
+        + vodId: string
+        + startOffsetSec: number
+        + endOffsetSec: number
+        + matchedTrackTitle: string
+        + copyrightHolder: string
+        + isMuted: boolean
+        + applyMuteSegment(): Promise<void>
+    }
+
+    class DMCANotice {
+        + id: string
+        + claimantName: string
+        + claimantEmail: string
+        + copyrightedWorkTitle: string
+        + originalWorkUrl: string
+        + infringingMediaUrl: string
+        + channelId: string
+        + status: DMCAStatus
+        + filedAt: Date
+        + processTakedown(): Promise<void>
+        + forwardToCreator(): Promise<void>
+    }
+
+    enum DMCAStatus <<enum>> {
+        FILED
+        NOTICE_FORWARDED
+        COUNTER_NOTICE_RECEIVED
+        CONTENT_TAKEDOWN
+        RESTORED
+        CONFIRMED_INFRINGEMENT
+    }
+
+    class CounterNotice {
+        + id: string
+        + noticeId: string
+        + streamerAccountId: string
+        + legalConsentJurisdiction: boolean
+        + goodFaithStatement: string
+        + filedAt: Date
+        + responseDeadline: Date
+        + submit(): Promise<void>
+    }
+
+    class DMCAStrike {
+        + id: string
+        + channelId: string
+        + noticeId: string
+        + issuedAt: Date
+        + expiresAt: Date
+        + isExpunged: boolean
+        + checkThresholdThreeStrikes(): boolean
+    }
+}
+
+package "Reporting & Penalties Hierarchy" #FFFBEB {
+    class Report {
+        + id: string
+        + reporterAccountId: string
+        + targetAccountId: string
+        + channelId: string | null
+        + reason: ReportReason
+        + description: string
+        + evidencePayloadUrl: string | null
+        + createdAt: Date
+    }
+
+    enum ReportReason <<enum>> {
+        HARASSMENT
+        HATE_SPEECH
+        SEXUAL_CONTENT
+        SPAM_AND_BOTS
+        COPYRIGHT_INFRINGEMENT
+        DANGEROUS_CONTENT
+        UNDERAGE_STREAMER
+    }
+
+    class ModerationTicket {
+        + id: string
+        + reportId: string
+        + assignedModeratorId: string | null
+        + status: TicketStatus
+        + resolutionNotes: string | null
+        + createdAt: Date
+        + resolvedAt: Date | null
+        + assignModerator(moderatorId: string): void
+        + resolve(actionTaken: boolean, notes: string): void
+    }
+
+    enum TicketStatus <<enum>> {
+        PENDING
+        UNDER_INVESTIGATION
+        RESOLVED
+        DISMISSED
+    }
+
+    abstract class ModerationAction <<abstract>> {
+        + id: string
+        + targetAccountId: string
+        + issuerAccountId: string
+        + reason: string
+        + createdAt: Date
+        + isActive: boolean
+        + {abstract} execute(): Promise<void>
+        + {abstract} revoke(revokerId: string, rationale: string): Promise<void>
+    }
+
+    class ModeratorActionLog {
+        + id: string
+        + channelId: string
+        + moderatorId: string
+        + targetUserId: string
+        + actionType: string
+        + reason: string
+        + durationSeconds: number | null
+        + createdAt: Date
+    }
+
+    class TimeoutAction {
+        + channelId: string
+        + durationSeconds: number
+        + expiresAt: Date
+        + execute(): Promise<void>
+        + revoke(revokerId: string, rationale: string): Promise<void>
+    }
+
+    class ChannelBanAction {
+        + channelId: string
+        + isPermanent: boolean
+        + execute(): Promise<void>
+        + revoke(revokerId: string, rationale: string): Promise<void>
+    }
+
+    class PlatformSuspensionAction {
+        + strikeIncrement: number
+        + daysDuration: number
+        + isPermanent: boolean
+        + appealDeadline: Date
+        + execute(): Promise<void>
+        + revoke(revokerId: string, rationale: string): Promise<void>
+    }
+
+    class Appeal {
+        + id: string
+        + suspensionId: string
+        + appellantAccountId: string
+        + statement: string
+        + status: AppealStatus
+        + reviewedByModeratorId: string | null
+        + reviewerRationale: string | null
+        + submittedAt: Date
+        + reviewedAt: Date | null
+        + review(decision: AppealStatus, rationale: string, modId: string): void
+    }
+
+    enum AppealStatus <<enum>> {
+        PENDING_REVIEW
+        ACCEPTED
+        REJECTED
+    }
+}
+
+' =========================================================================
+' ESTRUTURAÇÃO DO GRID EM 2 LINHAS (BOTTOM-OF-ROW-1 TO TOP-OF-ROW-2)
+' =========================================================================
+' Linha 1 Horizontal: Chat AutoMod (Esq) <-> Video Safety (Dir)
+AutoModPipeline -[hidden]right-> LiveVideoSafetyEngine
+
+' Transição Vertical Estrita: Fundo da Linha 1 para Topo da Linha 2
+BannedWordsRule -[hidden]down-> AudioFingerprintMatcher
+FrameAnalysisResult -[hidden]down-> Report
+
+' Linha 2 Horizontal: Audio DMCA (Esq) <-> Reporting (Dir)
+AudioFingerprintMatcher -[hidden]right-> Report
+
+' =========================================================================
+' RELACIONAMENTOS INTERNOS DE CHAT AUTOMOD
+' =========================================================================
+ShieldModeConfig .right.> AutoModPipeline : eleva protecao
+AutoModPipeline "1" *-right-> "1" QuarantineQueue
+
+AutoModPipeline "1" *-down-> "0..*" BlockedTerm
+AutoModPipeline "1" *-down-> "4" ModerationCategoryLevel
+ModerationCategoryLevel -right-> AutoModCategory
+AutoModPipeline "1" *-down-> "1" SuspiciousUserDetector
+
+AutoModPipeline "1" *-down-> "1..*" IModerationRule
+IModerationRule <|-- RegexFilterRule
+IModerationRule <|-- BannedWordsRule
+IModerationRule <|-- ToxicityClassifierRule
+
+AutoModPipeline ..> ModerationContext
+IModerationRule ..> RuleEvaluationResult
+RuleEvaluationResult -right-> AutoModAction
+
+' =========================================================================
+' RELACIONAMENTOS INTERNOS DE VIDEO SAFETY
+' =========================================================================
+LiveVideoSafetyEngine -right-> StreamKillSwitch : aciona em violacao
+LiveVideoSafetyEngine ..> FrameAnalysisResult : produz
+FrameAnalysisResult -right-> SafetyViolationCategory
+
+' =========================================================================
+' RELACIONAMENTOS INTERNOS DE AUDIO & DMCA
+' =========================================================================
+AudioFingerprintMatcher -right-> AuthorizedMusicCatalogProgram : consulta
+AudioFingerprintMatcher ..> AudioMatchResultDTO : produz
+AudioFingerprintMatcher -down-> VODAudioMute : gera corte
+
+DMCANotice -right-> DMCAStatus
+DMCANotice "1" *-down-> "0..1" CounterNotice
+DMCANotice "1" *-down-> "0..1" DMCAStrike
+
+' =========================================================================
+' RELACIONAMENTOS INTERNOS DE REPORTING & PENALTIES
+' =========================================================================
+Report -right-> ReportReason
+ModerationTicket "1" *-left-> "1..*" Report
+ModerationTicket -right-> TicketStatus
+
+ModerationTicket ..down> ModerationAction : gera
+ModeratorActionLog "0..*" -right-> "1" ModerationAction : audita
+
+ModerationAction <|-- TimeoutAction
+ModerationAction <|-- ChannelBanAction
+ModerationAction <|-- PlatformSuspensionAction
+
+PlatformSuspensionAction "1" *-down-> "0..1" Appeal
+Appeal -right-> AppealStatus
+
+' =========================================================================
+' RELACIONAMENTO ENTRE PACOTES (DIRETO E VERTICAL)
+' =========================================================================
+LiveVideoSafetyEngine -down-> PlatformSuspensionAction : aplica punicao
+
+@enduml

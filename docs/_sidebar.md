@@ -25,7 +25,15 @@
       - [1.1.2.3. FOCO_03 - IA Generativa](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.3.Foco03.IAGenerativa.md)
       - [1.1.2.4. FOCO_04 - Engenharia Reversa](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.Foco04.EngenhariaReversa.md)
       - [1.1.2.5. Referências](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.5.Referencias.md)
-    - [<span style="color:#d97706">🟠 1.1.3. SubEquipe_03</span>](/Base/Relatórios/1.1.3.SubEquipe_03.md)
+    - [<span style="color:#d97706">🟠 1.1.3. SubEquipe_03</span>](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.SubEquipe_03.md)
+      - [1.1.3.1. FOCO_01 - Modelagem Estática](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.1.Foco01.ModelagemEstatica.md)
+      - [1.1.3.2. FOCO_02 - Modelagem Dinâmica](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.2.Foco02.ModelagemDinamica.md)
+      - [1.1.3.3. FOCO_03 - IA Generativa](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.3.Foco03.IAGenerativa.md)
+      - [1.1.3.4. Metodologia](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.Metodologia.md)
+      - [1.1.3.5. Rastreabilidade & Elos](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Rastreabilidade.md)
+      - [1.1.3.6. Versionamentos & Participações](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.6.Versionamentos.md)
+      - [1.1.3.7. Diretrizes](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.7.Diretrizes.md)
+      - [1.1.3.8. Referências](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.8.Referencias.md)
   - [1.2. Participações - Modelagem](/Base/1.2.ParticipacoesModelagem.md)
   - [1.3. Iniciativas Extras - Modelagem](/Base/1.3.IniciativasExtras.md)
 
@@ -37,3 +45,5 @@
     - SubEquipe_02
       - [S2_01 — 11/09/2026](/Projeto/Atas/Atas_Sg2/ata-S2-01-2026-09-11.md)
       - [S2_02 — 14/09/2026](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-09-14.md)
+    - SubEquipe_03
+      - [S3_01 — 15/09/2026](/Projeto/Atas/Atas_Sg3/ata-S3-01-2026-09-15.md)

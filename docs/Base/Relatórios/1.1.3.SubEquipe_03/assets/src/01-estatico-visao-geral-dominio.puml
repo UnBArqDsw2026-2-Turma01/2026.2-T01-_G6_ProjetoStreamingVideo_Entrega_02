@@ -1,0 +1,265 @@
+@startuml 01-visao-geral-dominio
+skinparam defaultFontName sans-serif
+skinparam defaultFontSize 12
+skinparam roundcorner 8
+skinparam shadowing false
+skinparam linetype ortho
+skinparam nodesep 50
+skinparam ranksep 60
+
+skinparam class {
+    BackgroundColor #FFFFFF
+    BorderColor #334155
+    BorderThickness 1.2
+    HeaderBackgroundColor #F1F5F9
+    FontColor #0F172A
+    FontSize 12
+    AttributeFontColor #334155
+    AttributeFontSize 11
+}
+
+skinparam class<<enum>> {
+    BackgroundColor #FFFBEB
+    BorderColor #D97706
+    HeaderBackgroundColor #FEF3C7
+}
+
+skinparam package {
+    BackgroundColor #F8FAFC
+    BorderColor #64748B
+    BorderThickness 1.5
+    FontColor #1E293B
+    FontStyle bold
+}
+
+skinparam ArrowColor #475569
+skinparam ArrowThickness 1.2
+
+title Plataforma de Streaming UGC - Diagrama de Classes e Domínio Geral
+
+package "Core User & Channel" #EFF6FF {
+    class User {
+        + id: string
+        + username: string
+        + email: string
+        + displayName: string
+        + avatarUrl: string
+        + bio: string
+        + isVerified: boolean
+        + createdAt: Date
+        + updateProfile(data: Partial<UserProfileDTO>): void
+    }
+
+    class Channel {
+        + id: string
+        + ownerId: string
+        + handle: string
+        + isLive: boolean
+        + followerCount: number
+        + subscriberCount: number
+        + createdAt: Date
+        + updateSettings(settings: ChannelSettingsDTO): void
+        + getLiveStatus(): boolean
+    }
+}
+
+package "Interactive Chat & Emotes" #FAF5FF {
+    enum MessageType <<enum>> {
+        TEXT
+        ACTION
+        HIGHLIGHTED
+        SYSTEM_ANNOUNCEMENT
+    }
+
+    class ChatRoom {
+        + id: string
+        + channelId: string
+        + isSlowModeEnabled: boolean
+        + slowModeDelaySeconds: number
+        + isFollowerOnly: boolean
+        + isSubscriberOnly: boolean
+        + isEmoteOnly: boolean
+        + updateRoomSettings(settings: RoomSettingsDTO): void
+    }
+
+    class ChatMessage {
+        + id: string
+        + roomId: string
+        + senderUserId: string
+        + content: string
+        + type: MessageType
+        + isDeleted: boolean
+        + sentAt: Date
+        + markAsDeleted(): void
+    }
+
+    class Emote {
+        + id: string
+        + channelId: string | null
+        + code: string
+        + assetUrl: string
+        + isGlobal: boolean
+        + tierRequirement: number
+    }
+
+    class Poll {
+        + id: string
+        + roomId: string
+        + question: string
+        + expiresAt: Date
+        + isClosed: boolean
+        + vote(optionId: string, userId: string): void
+        + closePoll(): void
+    }
+
+    class PollOption {
+        + id: string
+        + pollId: string
+        + text: string
+        + voteCount: number
+    }
+}
+
+package "Streaming & Media" #F0FDF4 {
+    enum StreamStatus <<enum>> {
+        SCHEDULED
+        LIVE
+        PAUSED
+        ENDED
+    }
+
+    class StreamKey {
+        + id: string
+        + channelId: string
+        + keyHash: string
+        + ingestServerUrl: string
+        + isRevoked: boolean
+        + createdAt: Date
+        + regenerate(): string
+        + validate(providedKey: string): boolean
+    }
+
+    class Category {
+        + id: string
+        + name: string
+        + slug: string
+        + iconUrl: string
+        + viewerCount: number
+    }
+
+    class Tag {
+        + id: string
+        + name: string
+    }
+
+    class LiveStream {
+        + id: string
+        + channelId: string
+        + categoryId: string
+        + title: string
+        + status: StreamStatus
+        + startedAt: Date
+        + endedAt: Date | null
+        + peakViewers: number
+        + totalViews: number
+        + goLive(): void
+        + endStream(): void
+        + pause(): void
+    }
+
+    class VOD {
+        + id: string
+        + streamId: string
+        + storageUrl: string
+        + durationSec: number
+        + resolution: string
+        + viewCount: number
+        + isPublished: boolean
+        + createdAt: Date
+        + publish(): void
+        + delete(): void
+    }
+
+    class Clip {
+        + id: string
+        + vodId: string
+        + creatorUserId: string
+        + title: string
+        + startOffsetSec: number
+        + durationSec: number
+        + clipUrl: string
+        + viewCount: number
+        + createdAt: Date
+        + share(): string
+    }
+}
+
+package "Monetization & Wallet" #FFFBEB {
+    enum SubscriptionTier <<enum>> {
+        TIER_1
+        TIER_2
+        TIER_3
+    }
+
+    class Subscription {
+        + id: string
+        + subscriberUserId: string
+        + channelId: string
+        + tier: SubscriptionTier
+        + startsAt: Date
+        + renewsAt: Date
+        + isActive: boolean
+        + cancel(): void
+    }
+
+    class Donation {
+        + id: string
+        + donorUserId: string
+        + channelId: string
+        + amountCents: number
+        + currency: string
+        + message: string
+        + createdAt: Date
+    }
+
+    class Wallet {
+        + id: string
+        + channelId: string
+        + balanceCents: number
+        + pendingPayoutCents: number
+        + currency: string
+        + credit(amountCents: number): void
+        + requestPayout(): Promise<boolean>
+    }
+}
+
+' Alinhamento dos Pacotes no Espaço
+"Core User & Channel" -[hidden]down- "Streaming & Media"
+"Interactive Chat & Emotes" -[hidden]right- "Streaming & Media"
+"Streaming & Media" -[hidden]right- "Monetization & Wallet"
+
+' Relacionamentos Primários
+User "1" *-down-> "1" Channel
+
+Channel "1" *-left-> "1" ChatRoom
+Channel "1" *-down-> "1" StreamKey
+Channel "1" o-down-> "0..*" LiveStream
+Channel "1" *-right-> "1" Wallet
+
+' Streaming Interno
+LiveStream "1" *-down-> "0..1" VOD
+VOD "1" o-down-> "0..*" Clip
+LiveStream "0..*" -right-> "1" Category
+Category -down-> Tag
+
+' Chat Interno
+ChatRoom "1" *-down-> "0..*" ChatMessage
+ChatRoom "1" *-down-> "0..*" Poll
+ChatRoom "1" *-down-> "0..*" Emote
+Poll "1" *-down-> "2..*" PollOption
+
+' Monetização Interna
+Wallet "1" *-down-> "0..*" Subscription
+Wallet "1" *-down-> "0..*" Donation
+
+@enduml
