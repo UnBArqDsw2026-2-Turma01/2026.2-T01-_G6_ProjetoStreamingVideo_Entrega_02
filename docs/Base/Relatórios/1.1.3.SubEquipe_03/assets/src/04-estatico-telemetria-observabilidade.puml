@@ -1,0 +1,271 @@
+@startuml 04-telemetria-observabilidade
+skinparam defaultFontName sans-serif
+skinparam defaultFontSize 12
+skinparam roundcorner 8
+skinparam shadowing false
+skinparam linetype spline
+skinparam nodesep 50
+skinparam ranksep 60
+
+' Estilos Globais de Classe
+skinparam class {
+    BackgroundColor #FFFFFF
+    BorderColor #334155
+    BorderThickness 1.2
+    HeaderBackgroundColor #F1F5F9
+    FontColor #0F172A
+    FontSize 12
+    AttributeFontColor #334155
+    AttributeFontSize 11
+}
+
+skinparam class<<interface>> {
+    BackgroundColor #F0FDF4
+    BorderColor #16A34A
+    HeaderBackgroundColor #DCFCE7
+}
+
+skinparam class<<enum>> {
+    BackgroundColor #FFFBEB
+    BorderColor #D97706
+    HeaderBackgroundColor #FEF3C7
+}
+
+skinparam class<<abstract>> {
+    BackgroundColor #FAF5FF
+    BorderColor #9333EA
+    HeaderBackgroundColor #F3E8FF
+}
+
+skinparam package {
+    BackgroundColor #F8FAFC
+    BorderColor #64748B
+    BorderThickness 1.5
+    FontColor #1E293B
+    FontStyle bold
+}
+
+skinparam ArrowColor #475569
+skinparam ArrowThickness 1.2
+
+title Sub-equipe 03: Telemetria de Transmissão (QoS), Experiência (QoE) & Anti-Viewbot (Spade Architecture)
+
+' ==============================================================================
+' TIER 1: INGEST QoS -> STREAM HEALTH & ALERTING -> STORAGE PIPELINE
+' ==============================================================================
+
+package "Ingest & Stream QoS (Quality of Service)" #F0FDF4 {
+    class IngestNode {
+        + id: string
+        + region: string
+        + hostname: string
+        + activeStreamsCount: number
+        + cpuUsagePercentage: number
+        + memoryUsagePercentage: number
+        + isHealthy: boolean
+        + canAcceptNewStreams(): boolean
+    }
+
+    class IngestTelemetryMetric {
+        + id: string
+        + streamId: string
+        + ingestNodeId: string
+        + timestamp: Date
+        + bitrateKbps: number
+        + targetBitrateKbps: number
+        + currentFps: number
+        + droppedFrames: number
+        + totalFrames: number
+        + jitterMs: number
+        + roundTripTimeMs: number
+        + pcrDriftMs: number
+        + audioVideoDesyncMs: number
+        + packetLossRatio: number
+        + videoCodec: string
+        + audioCodec: string
+        + keyframeIntervalMs: number
+        + calculateDropRatio(): number
+        + isBitrateStable(): boolean
+    }
+}
+
+package "Stream Health & Alerting" #FEF2F2 {
+    class StreamHealthEngine {
+        + evaluateStreamHealth(streamId: string): StreamHealthSummaryDTO
+        + checkAlertThresholds(metric: IngestTelemetryMetric): void
+    }
+
+    enum AlertSeverity <<enum>> {
+        INFO
+        WARNING
+        CRITICAL
+    }
+
+    class SystemAlert {
+        + id: string
+        + streamId: string | null
+        + ingestNodeId: string | null
+        + severity: AlertSeverity
+        + title: string
+        + description: string
+        + triggeredAt: Date
+        + isResolved: boolean
+        + resolve(resolvedBy: string): void
+    }
+}
+
+package "Aggregation & Timeseries Pipeline" #F8FAFC {
+    interface IMetricsSink <<interface>> {
+        + writeBatch(batch: TelemetryBatch<any>): Promise<boolean>
+    }
+
+    class TimeSeriesDatabaseSink {
+        + retentionPolicyDays: number
+        + clusterEndpoint: string
+        + writeBatch(batch: TelemetryBatch<any>): Promise<boolean>
+    }
+
+    class TelemetryBatch<T> {
+        + batchId: string
+        + items: Array<T>
+        + createdAt: Date
+        + size(): number
+        + clear(): void
+    }
+
+    interface ITelemetryCollector<T> <<interface>> {
+        + recordMetric(metric: T): void
+        + flush(): Promise<TelemetryBatch<T>>
+    }
+}
+
+' ==============================================================================
+' TIER 2: VIEWER QoE -> SPADE ANTI-VIEWBOT
+' ==============================================================================
+
+package "Viewer Experience QoE (Quality of Experience)" #EFF6FF {
+    enum ClientPlatform <<enum>> {
+        WEB_BROWSER
+        IOS_APP
+        ANDROID_APP
+        SMART_TV
+        DESKTOP_CLIENT
+    }
+
+    class ViewerSession {
+        + id: string
+        + streamId: string
+        + viewerAccountId: string | null
+        + platform: ClientPlatform
+        + clientIp: string
+        + clientAsn: number
+        + startedAt: Date
+        + endedAt: Date | null
+        + totalWatchTimeSec: number
+        + closeSession(): void
+    }
+
+    class ViewerQoEMetric {
+        + id: string
+        + sessionId: string
+        + timestamp: Date
+        + resolution: string
+        + bufferDurationMs: number
+        + rebufferEventsCount: number
+        + latencyToLiveSec: number
+        + downloadBitrateKbps: number
+        + isAudioMuted: boolean
+        + hasBufferingIssue(): boolean
+    }
+}
+
+package "Anti-Viewbotting & Spade Data Pipeline" #FAF5FF {
+    class ViewerEngagementBeacon {
+        + sessionId: string
+        + streamId: string
+        + timestamp: Date
+        + watchTimeDeltaSec: number
+        + hasWindowFocus: boolean
+        + isTabVisible: boolean
+        + mouseInteractionScore: number
+        + volumePercentage: number
+        + rawBase64Payload: string
+        + decodePayload(): SpadeEventEnvelope
+    }
+
+    class SpadeEventEnvelope {
+        + eventName: string
+        + clientTime: Date
+        + serverTime: Date
+        + sessionId: string
+        + deviceId: string
+        + sequenceNumber: number
+        + schemaVersion: number
+        + payload: Record<string, any>
+        + serializeBase64(): string
+        + validateIntegrity(): boolean
+    }
+
+    class AntiViewbotDetector {
+        + anomalyThreshold: number
+        + minimumEngagementScore: number
+        + isDatacenterAsn(clientAsn: number): boolean
+        + hasWebDriverFlag(userAgentPayload: string): boolean
+        + isAudioContextActive(metrics: Record<string, any>): boolean
+        + evaluateBeacon(beacon: ViewerEngagementBeacon): boolean
+        + detectBotCluster(beacons: Array<ViewerEngagementBeacon>): Array<string>
+        + filterAuditedViewers(streamId: string): number
+    }
+
+    class CCUConsolidator {
+        + streamId: string
+        + calculateAuditedCCU(): CCUSnapshot
+        + discardFakeSessions(rejectedSessionIds: Set<string>): void
+    }
+
+    class CCUSnapshot {
+        + streamId: string
+        + timestamp: Date
+        + totalConnections: number
+        + auditedConcurrentViewers: number
+        + rejectedBotConnections: number
+        + peakConcurrentViewers: number
+    }
+}
+
+' ==============================================================================
+' RELACIONAMENTOS TIER 1
+' ==============================================================================
+IngestTelemetryMetric "0..*" -up-> "1" IngestNode
+StreamHealthEngine -left-> IngestTelemetryMetric : avalia
+StreamHealthEngine -down-> SystemAlert : aciona
+
+' Storage Pipeline (dir)
+IMetricsSink <|.. TimeSeriesDatabaseSink
+ITelemetryCollector -down-> TelemetryBatch : produz
+IMetricsSink -down-> TelemetryBatch : persiste
+
+' Alinhamento horizontal entre pacotes de Tier 1
+IngestTelemetryMetric -[hidden]right-> StreamHealthEngine
+StreamHealthEngine -[hidden]right-> IMetricsSink
+
+' ==============================================================================
+' ÂNCORAS VERTICAIS TIER 1 -> TIER 2 (ALINHAMENTO COLUNAR ESTREITO)
+' ==============================================================================
+IngestTelemetryMetric -[hidden]down-> ViewerSession
+StreamHealthEngine -[hidden]down-> ViewerEngagementBeacon
+TimeSeriesDatabaseSink -[hidden]down-> AntiViewbotDetector
+TelemetryBatch -[hidden]down-> CCUConsolidator
+ITelemetryCollector -[hidden]down-> CCUSnapshot
+
+' ==============================================================================
+' RELACIONAMENTOS TIER 2
+' ==============================================================================
+ViewerSession "1" *-- "1..*" ViewerQoEMetric
+ViewerSession "1" -right-> "1..*" ViewerEngagementBeacon : emite
+ViewerEngagementBeacon -down-> SpadeEventEnvelope : empacota
+ViewerEngagementBeacon -right-> AntiViewbotDetector : auditado por
+AntiViewbotDetector -right-> CCUConsolidator : dados auditados
+CCUConsolidator -right-> CCUSnapshot : gera snapshot
+
+@enduml

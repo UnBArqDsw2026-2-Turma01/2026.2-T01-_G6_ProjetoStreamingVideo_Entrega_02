@@ -1,0 +1,318 @@
+@startuml 00-arquitetura-completa-integrada
+skinparam defaultFontName sans-serif
+skinparam defaultFontSize 12
+skinparam roundcorner 8
+skinparam shadowing false
+skinparam linetype spline
+skinparam nodesep 60
+skinparam ranksep 70
+
+' Estilos Globais de Classe
+skinparam class {
+    BackgroundColor #FFFFFF
+    BorderColor #334155
+    BorderThickness 1.2
+    HeaderBackgroundColor #F1F5F9
+    FontColor #0F172A
+    FontSize 12
+    AttributeFontColor #334155
+    AttributeFontSize 11
+}
+
+skinparam class<<interface>> {
+    BackgroundColor #F0FDF4
+    BorderColor #16A34A
+    HeaderBackgroundColor #DCFCE7
+}
+
+skinparam class<<enum>> {
+    BackgroundColor #FFFBEB
+    BorderColor #D97706
+    HeaderBackgroundColor #FEF3C7
+}
+
+skinparam class<<abstract>> {
+    BackgroundColor #FAF5FF
+    BorderColor #9333EA
+    HeaderBackgroundColor #F3E8FF
+}
+
+skinparam package {
+    BackgroundColor #F8FAFC
+    BorderColor #64748B
+    BorderThickness 1.5
+    FontColor #1E293B
+    FontStyle bold
+}
+
+skinparam ArrowColor #475569
+skinparam ArrowThickness 1.2
+
+title Plataforma UGC Live Streaming - Arquitetura Estática Integrada (Master Enterprise)
+
+package "1. Identity, Auth & Edge Security" #EFF6FF {
+    class Account {
+        + id: string
+        + email: string
+        + status: AccountStatus
+        + isEmailVerified: boolean
+        + createdAt: Date
+    }
+
+    class ClientIntegrityAttestation {
+        + id: string
+        + clientIp: string
+        + proofOfWorkNonce: string
+        + hasWebDriverFlag: boolean
+        + kasadaPayloadHeader: string
+        + verifyPoWChallenge(difficulty: number): boolean
+    }
+
+    class Session {
+        + id: string
+        + accountId: string
+        + ipAddress: string
+        + isRevoked: boolean
+        + expiresAt: Date
+    }
+
+    class PlaybackAuthorizationToken {
+        + channelId: string
+        + userId: string | null
+        + maximumResolution: string
+        + maximumVideoBitrateKbps: number
+        + isSubscriber: boolean
+        + signature: string
+        + expires: number
+        + verifySignature(secret: string): boolean
+    }
+
+    class RoleAssignment {
+        + accountId: string
+        + roleId: string
+        + channelId: string | null
+    }
+}
+
+package "2. Core Streaming & Media Pipeline" #F0FDF4 {
+    enum StreamStatus <<enum>> {
+        SCHEDULED
+        LIVE
+        PAUSED
+        ENDED
+    }
+
+    class Channel {
+        + id: string
+        + ownerId: string
+        + handle: string
+        + isLive: boolean
+        + followerCount: number
+    }
+
+    class StreamKey {
+        + id: string
+        + channelId: string
+        + keyHash: string
+        + ingestServerUrl: string
+        + isRevoked: boolean
+    }
+
+    class LiveStream {
+        + id: string
+        + channelId: string
+        + title: string
+        + status: StreamStatus
+        + startedAt: Date
+        + peakViewers: number
+    }
+
+    class VOD {
+        + id: string
+        + streamId: string
+        + storageUrl: string
+        + durationSec: number
+        + isPublished: boolean
+    }
+
+    class Clip {
+        + id: string
+        + vodId: string
+        + creatorUserId: string
+        + startOffsetSec: number
+        + durationSec: number
+    }
+}
+
+package "3. Real-Time Chat & Interaction" #FAF5FF {
+    class ChatRoom {
+        + id: string
+        + channelId: string
+        + isSlowModeEnabled: boolean
+        + isFollowerOnly: boolean
+        + isSubscriberOnly: boolean
+    }
+
+    class ChatMessage {
+        + id: string
+        + roomId: string
+        + senderUserId: string
+        + content: string
+        + sentAt: Date
+    }
+}
+
+package "4. Content Safety, AutoMod & DMCA" #FEF2F2 {
+    class ShieldModeConfig {
+        + channelId: string
+        + isShieldModeActive: boolean
+        + followerOnlyDurationMinutes: number
+        + autoModLevelOverride: number
+        + activate(moderatorId: string): void
+    }
+
+    class AutoModPipeline {
+        + channelId: string
+        + inspectMessage(ctx: ModerationContext): Promise<RuleEvaluationResult>
+    }
+
+    class SuspiciousUserDetector {
+        + checkBanEvasion(fingerprint: string, subnet: string): Promise<boolean>
+    }
+
+    class LiveVideoSafetyEngine {
+        + streamId: string
+        + analyzeKeyframe(frameData: ArrayBuffer): Promise<FrameAnalysisResult>
+    }
+
+    class StreamKillSwitch {
+        + emergencyTerminateStream(streamId: string, reason: string): Promise<boolean>
+    }
+
+    class AudioFingerprintMatcher {
+        + computeAcousticHash(pcmBuffer: ArrayBuffer): string
+        + queryCopyrightRegistry(fingerprint: string): Promise<AudioMatchResultDTO | null>
+    }
+
+    class VODAudioMute {
+        + vodId: string
+        + startOffsetSec: number
+        + endOffsetSec: number
+        + applyMuteSegment(): Promise<void>
+    }
+
+    class PlatformSuspensionAction <<abstract>> {
+        + targetAccountId: string
+        + strikeIncrement: number
+        + isPermanent: boolean
+    }
+
+    class ModeratorActionLog {
+        + id: string
+        + channelId: string
+        + moderatorId: string
+        + actionType: string
+        + createdAt: Date
+    }
+}
+
+package "5. Telemetry, Spade & Anti-Viewbot" #ECFDF5 {
+    class IngestTelemetryMetric {
+        + streamId: string
+        + bitrateKbps: number
+        + currentFps: number
+        + droppedFrames: number
+        + pcrDriftMs: number
+        + audioVideoDesyncMs: number
+    }
+
+    class ViewerSession {
+        + id: string
+        + streamId: string
+        + viewerAccountId: string | null
+        + clientIp: string
+        + clientAsn: number
+    }
+
+    class SpadeEventEnvelope {
+        + eventName: string
+        + clientTime: Date
+        + sessionId: string
+        + deviceId: string
+        + serializeBase64(): string
+    }
+
+    class ViewerEngagementBeacon {
+        + sessionId: string
+        + watchTimeDeltaSec: number
+        + hasWindowFocus: boolean
+        + isTabVisible: boolean
+        + rawBase64Payload: string
+    }
+
+    class AntiViewbotDetector {
+        + isDatacenterAsn(asn: number): boolean
+        + evaluateBeacon(beacon: ViewerEngagementBeacon): boolean
+        + filterAuditedViewers(streamId: string): number
+    }
+
+    class CCUSnapshot {
+        + streamId: string
+        + timestamp: Date
+        + auditedConcurrentViewers: number
+    }
+}
+
+package "6. Monetization & Commerce" #FFFBEB {
+    class Subscription {
+        + subscriberUserId: string
+        + channelId: string
+        + tier: SubscriptionTier
+        + isActive: boolean
+    }
+
+    class Wallet {
+        + channelId: string
+        + balanceCents: number
+        + currency: string
+    }
+}
+
+' Relacionamentos Estruturados com Direção Explícita
+Account "1" *-right-> "1" Channel
+Account "1" *-down-> "0..*" Session
+Account "1" *-down-> "0..*" RoleAssignment
+ClientIntegrityAttestation ..> Session : atesta
+
+Channel "1" *-down-> "1" StreamKey
+Channel "1" o-down-> "0..*" LiveStream
+Channel "1" *-right-> "1" ChatRoom
+Channel "1" *-down-> "1" Wallet
+Channel "1" *-down-> "0..*" Subscription
+
+LiveStream "1" *-down-> "0..1" VOD
+VOD "1" o-down-> "0..*" Clip
+
+ChatRoom "1" *-down-> "0..*" ChatMessage
+ChatMessage ..> AutoModPipeline : analisa
+ShieldModeConfig -down-> AutoModPipeline : eleva proteção
+AutoModPipeline -right-> SuspiciousUserDetector : consulta
+
+LiveStream ..> LiveVideoSafetyEngine : keyframes
+LiveVideoSafetyEngine -right-> StreamKillSwitch : aciona
+LiveVideoSafetyEngine -down-> PlatformSuspensionAction : pune
+ModeratorActionLog "0..*" -left-> "1" PlatformSuspensionAction : audita
+
+LiveStream ..> AudioFingerprintMatcher : áudio
+AudioFingerprintMatcher -down-> VODAudioMute : muta
+
+LiveStream ..> IngestTelemetryMetric : monitora QoS
+ViewerSession "1" *-down-> "1..*" ViewerEngagementBeacon
+ViewerEngagementBeacon ..> SpadeEventEnvelope : envelope
+ViewerEngagementBeacon -right-> AntiViewbotDetector : audita
+AntiViewbotDetector -down-> CCUSnapshot : CCU real
+
+LiveStream ..> PlaybackAuthorizationToken : valida
+PlaybackAuthorizationToken ..> Subscription : checa sub
+
+@enduml

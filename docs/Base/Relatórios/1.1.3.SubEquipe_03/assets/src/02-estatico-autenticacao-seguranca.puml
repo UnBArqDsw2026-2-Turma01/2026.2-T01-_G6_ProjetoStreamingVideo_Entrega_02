@@ -1,0 +1,395 @@
+@startuml 02-autenticacao-seguranca
+skinparam defaultFontName sans-serif
+skinparam defaultFontSize 12
+skinparam roundcorner 8
+skinparam shadowing false
+skinparam linetype ortho
+skinparam nodesep 45
+skinparam ranksep 55
+
+skinparam class {
+    BackgroundColor #FFFFFF
+    BorderColor #334155
+    BorderThickness 1.2
+    HeaderBackgroundColor #F1F5F9
+    FontColor #0F172A
+    FontSize 12
+    AttributeFontColor #334155
+    AttributeFontSize 11
+}
+
+skinparam class<<interface>> {
+    BackgroundColor #F0FDF4
+    BorderColor #16A34A
+    HeaderBackgroundColor #DCFCE7
+}
+
+skinparam class<<enum>> {
+    BackgroundColor #FFFBEB
+    BorderColor #D97706
+    HeaderBackgroundColor #FEF3C7
+}
+
+skinparam package {
+    BackgroundColor #F8FAFC
+    BorderColor #64748B
+    BorderThickness 1.5
+    FontColor #1E293B
+    FontStyle bold
+}
+
+skinparam ArrowColor #475569
+skinparam ArrowThickness 1.2
+
+title Sub-equipe 03: Autenticação, Gestão de Acesso (RBAC), Tokens & Defesa de Borda
+
+package "Edge Proof-of-Work & Client Attestation" #F0FDF4 {
+    class ClientIntegrityAttestation {
+        + id: string
+        + clientIp: string
+        + proofOfWorkNonce: string
+        + canvasFingerprintHash: string
+        + hasWebDriverFlag: boolean
+        + kasadaPayloadHeader: string
+        + issuedAt: Date
+        + expiresAt: Date
+        + verifyPoWChallenge(difficulty: number): boolean
+        + isHeadlessAutomation(): boolean
+        + isValid(): boolean
+    }
+
+    class StepUpAuthChallenge {
+        + id: string
+        + accountId: string
+        + trigger: StepUpTrigger
+        + verificationNonce: string
+        + isCompleted: boolean
+        + expiresAt: Date
+        + createdAt: Date
+        + completeWithPasskey(assertionResponse: string): boolean
+        + completeWithPassword(hash: string): boolean
+        + isFresh(): boolean
+    }
+
+    enum StepUpTrigger <<enum>> {
+        STREAM_KEY_ROTATION
+        WALLET_PAYOUT_REQUEST
+        EMAIL_CHANGE
+        TWO_FACTOR_RESET
+    }
+}
+
+package "Identity & Account" #EFF6FF {
+    class Account {
+        + id: string
+        + email: string
+        + isEmailVerified: boolean
+        + status: AccountStatus
+        + createdAt: Date
+        + updatedAt: Date
+        + changeEmail(newEmail: string): void
+        + setStatus(status: AccountStatus): void
+    }
+
+    enum AccountStatus <<enum>> {
+        ACTIVE
+        SUSPENDED
+        PENDING_VERIFICATION
+        DEACTIVATED
+    }
+
+    class Credential {
+        + id: string
+        + accountId: string
+        + passwordHash: string
+        + salt: string
+        + algorithm: string
+        + passwordUpdatedAt: Date
+        + verifyPassword(plainText: string): Promise<boolean>
+        + updatePassword(newHash: string, newSalt: string): void
+    }
+
+    class LeakedPasswordBloomFilter {
+        + filterCapacity: number
+        + falsePositiveRate: number
+        + checkHash(passwordSha256: string): boolean
+        + reloadFilter(binaryBuffer: ArrayBuffer): void
+    }
+
+    class TwoFactorAuth {
+        + id: string
+        + accountId: string
+        + type: TwoFactorType
+        + isEnabled: boolean
+        + secretKey: string
+        + passkeyPublicKeyId: string | null
+        + backupCodes: Array<string>
+        + enabledAt: Date | null
+        + verifyToken(tokenOrAssertion: string): boolean
+        + consumeBackupCode(code: string): boolean
+    }
+
+    enum TwoFactorType <<enum>> {
+        TOTP_RFC_6238
+        FIDO2_PASSKEY
+        SMS_FALLBACK
+    }
+
+    class OAuthIdentity {
+        + id: string
+        + accountId: string
+        + provider: OAuthProviderType
+        + providerUserId: string
+        + providerEmail: string
+        + grantedScopes: Array<OAuthScope>
+        + linkedAt: Date
+        + updateTokens(tokens: OAuthTokenPayloadDTO): void
+    }
+
+    enum OAuthProviderType <<enum>> {
+        GOOGLE
+        DISCORD
+        TWITCH
+        APPLE
+    }
+
+    enum OAuthScope <<enum>> {
+        CHANNEL_READ_STREAM_KEY
+        CHANNEL_MANAGE_BROADCAST
+        CHAT_READ
+        CHAT_EDIT
+        MODERATOR_MANAGE_BANNED_USERS
+        USER_READ_EMAIL
+    }
+}
+
+package "Access Control & RBAC" #FAF5FF {
+    interface IAccessControlService <<interface>> {
+        + checkPermission(accountId: string, permissionCode: string, channelId?: string): Promise<boolean>
+        + assignRole(dto: AssignRoleDTO): Promise<RoleAssignment>
+        + revokeRole(assignmentId: string): Promise<void>
+        + listUserPermissions(accountId: string, channelId?: string): Promise<Array<string>>
+    }
+
+    class RoleAssignment {
+        + id: string
+        + accountId: string
+        + roleId: string
+        + channelId: string | null
+        + assignedAt: Date
+        + assignedByUserId: string
+        + isValid(): boolean
+    }
+
+    class Role {
+        + id: string
+        + name: string
+        + description: string
+        + scope: RoleScope
+        + isSystemDefault: boolean
+        + hasPermission(code: string): boolean
+    }
+
+    enum RoleScope <<enum>> {
+        GLOBAL_PLATFORM
+        CHANNEL_CONTEXT
+    }
+
+    class Permission {
+        + id: string
+        + code: string
+        + description: string
+        + category: string
+    }
+}
+
+package "Playback Authorization (Media Grant)" #EFF6FF {
+    interface IPlaybackTokenService <<interface>> {
+        + mintToken(channelId: string, accountId: string | null, clientCtx: ClientContextDTO): Promise<PlaybackAuthorizationToken>
+        + validateTokenForIngestOrEdge(rawToken: string, sig: string): boolean
+    }
+
+    class PlaybackAuthorizationToken {
+        + channel: string
+        + channelId: string
+        + userId: string | null
+        + userIp: string
+        + platform: string
+        + playerType: string
+        + maximumResolution: string
+        + maximumVideoBitrateKbps: number
+        + restrictedBitrates: Array<string>
+        + geoblockReason: string
+        + isSubscriber: boolean
+        + showAds: boolean
+        + serverAds: boolean
+        + hideAds: boolean
+        + adblockDetected: boolean
+        + signature: string
+        + expires: number
+        + version: number
+        + signHMAC(secretKey: string): string
+        + verifySignature(secretKey: string): boolean
+        + isExpired(): boolean
+    }
+}
+
+package "Session & Token Management" #F8FAFC {
+    interface ITokenService <<interface>> {
+        + generatePair(session: Session, account: Account): Promise<TokenPairDTO>
+        + verifyAccessToken(token: string): AccessTokenPayload
+        + rotateRefreshToken(rawToken: string): Promise<TokenPairDTO>
+        + revokeSession(sessionId: string): Promise<void>
+    }
+
+    interface IDistributedSessionStore <<interface>> {
+        + saveSession(session: Session): Promise<void>
+        + blacklistToken(tokenHash: string, ttlSeconds: number): Promise<void>
+        + isBlacklisted(tokenHash: string): Promise<boolean>
+        + revokeAllUserSessions(accountId: string): Promise<void>
+    }
+
+    class Session {
+        + id: string
+        + accountId: string
+        + ipAddress: string
+        + userAgent: string
+        + isRevoked: boolean
+        + lastActivityAt: Date
+        + expiresAt: Date
+        + createdAt: Date
+        + touch(): void
+        + revoke(): void
+        + isExpired(): boolean
+    }
+
+    class RefreshToken {
+        + id: string
+        + sessionId: string
+        + tokenHash: string
+        + familyId: string
+        + isUsed: boolean
+        + isRevoked: boolean
+        + expiresAt: Date
+        + createdAt: Date
+        + rotate(): RefreshToken
+        + revokeFamily(): void
+    }
+
+    class AccessTokenPayload {
+        + sub: string
+        + email: string
+        + globalRoles: Array<string>
+        + permissions: Array<string>
+        + sessionId: string
+        + iat: number
+        + exp: number
+    }
+}
+
+package "Security & Audit" #FEF2F2 {
+    interface IAuditLogger <<interface>> {
+        + log(event: AuditLogEntryDTO): Promise<void>
+        + queryLogs(filter: AuditQueryFilterDTO): Promise<Array<AuditLog>>
+    }
+
+    class AuditLog {
+        + id: string
+        + actorAccountId: string | null
+        + targetAccountId: string | null
+        + eventType: SecurityEventType
+        + ipAddress: string
+        + userAgent: string
+        + metadata: Record<string, any>
+        + timestamp: Date
+    }
+
+    enum SecurityEventType <<enum>> {
+        LOGIN_SUCCESS
+        LOGIN_FAILURE
+        PASSWORD_CHANGE
+        TWO_FACTOR_ENABLED
+        TWO_FACTOR_DISABLED
+        SESSION_REVOKED
+        ROLE_ASSIGNED
+        ROLE_REVOKED
+        PLAYBACK_TOKEN_MINTED
+        STREAM_KEY_REGENERATED
+        STEP_UP_CHALLENGE_SUCCESS
+        STEP_UP_CHALLENGE_FAILED
+    }
+}
+
+' =========================================================================
+' ESTRUTURAÇÃO DO GRID EM 3 COLUNAS x 2 LINHAS
+' =========================================================================
+' Linha Superior (Col 1, 2, 3)
+"Edge Proof-of-Work & Client Attestation" -[hidden]right- "Identity & Account"
+"Identity & Account" -[hidden]right- "Access Control & RBAC"
+
+' Linha Inferior (Col 1, 2, 3)
+"Playback Authorization (Media Grant)" -[hidden]right- "Session & Token Management"
+"Session & Token Management" -[hidden]right- "Security & Audit"
+
+' Alinhamento Vertical das Colunas
+"Edge Proof-of-Work & Client Attestation" -[hidden]down- "Playback Authorization (Media Grant)"
+"Identity & Account" -[hidden]down- "Session & Token Management"
+"Access Control & RBAC" -[hidden]down- "Security & Audit"
+
+' =========================================================================
+' RELACIONAMENTOS INTERNOS
+' =========================================================================
+' Edge Interno
+ClientIntegrityAttestation -down-> StepUpAuthChallenge
+StepUpAuthChallenge -right-> StepUpTrigger
+
+' Identity Interno
+Account -right-> AccountStatus
+Account "1" *-down-> "0..1" Credential
+Credential -[hidden]down-> TwoFactorAuth
+TwoFactorAuth -[hidden]down-> OAuthIdentity
+Account "1" *-down-> "0..*" TwoFactorAuth
+Account "1" *-down-> "0..*" OAuthIdentity
+Credential -right-> LeakedPasswordBloomFilter : verifica
+TwoFactorAuth -right-> TwoFactorType
+OAuthIdentity -right-> OAuthProviderType
+OAuthProviderType -down-> OAuthScope
+
+' RBAC Interno
+IAccessControlService -down-> RoleAssignment
+RoleAssignment "0..*" -down-> "1" Role
+Role -right-> RoleScope
+Role "0..*" o-down-> "1..*" Permission
+
+' Session Interno
+ITokenService -right-> IDistributedSessionStore
+ITokenService -down-> Session
+Session "1" *-down-> "0..*" RefreshToken
+Session ..right> AccessTokenPayload : emite
+
+' Playback Interno
+IPlaybackTokenService -down-> PlaybackAuthorizationToken
+
+' Audit Interno
+IAuditLogger -down-> AuditLog
+AuditLog -right-> SecurityEventType
+
+' =========================================================================
+' RELACIONAMENTOS HIERÁRQUICOS INTER-PACOTES
+' =========================================================================
+' Linha 1 (Superior): Centro para Esquerda e Direita
+StepUpAuthChallenge <..left. Account : exige desafio
+Account "1" *-right-> "0..*" RoleAssignment
+
+' Coluna Central: Linha 1 para Linha 2
+Account "1" *-down-> "0..*" Session
+ClientIntegrityAttestation ..down> Session : autoriza handshake
+
+' Linha 2 (Inferior): Centro para Esquerda e Direita
+PlaybackAuthorizationToken <..left. Session : concede
+Session ..right> AuditLog : audita
+
+' Âncora RBAC -> Audit
+RoleAssignment -[hidden]down-> AuditLog
+
+@enduml
