@@ -1,0 +1,76 @@
+@startuml sequencia-iniciar-transmissao-heitor
+
+title Modelo dinâmico — Iniciar transmissão ao vivo
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam responseMessageBelowArrow true
+autonumber
+
+actor "Criador" as Creator
+boundary "Aplicação web" as WebApp
+control "LiveStreamService" as StreamService
+participant "PolicyService\n<<externo: Subequipe 3>>" as Policy
+database "LiveStreamRepository" as StreamRepository
+participant "Encoder" as Encoder
+control "Gateway de ingestão" as IngestGateway
+control "MediaProcessingService" as MediaProcessing
+database "Origin Storage" as Origin
+queue "EventBus" as EventBus
+
+Creator -> WebApp: createStream(config: StreamConfig)
+WebApp -> StreamService: createStream(userId, config)
+StreamService -> Policy: checkCreatorEligibility(userId)
+Policy --> StreamService: eligible: boolean
+
+alt criador inelegível ou bloqueado
+  StreamService --> WebApp: CreatorNotEligible(reason)
+  WebApp --> Creator: exibir motivo e orientação
+else criador elegível
+  StreamService -> StreamRepository: save(status = CONFIGURING)
+  StreamRepository --> StreamService: liveStream
+  StreamService --> WebApp: StreamSetup(streamId, ingestEndpoint, credentials)
+  WebApp --> Creator: exibir configuração de ingestão
+
+  Creator -> Encoder: configure(ingestEndpoint, credentials)
+  Creator -> Encoder: startCapture()
+
+  Encoder -> IngestGateway: pushMedia(credentials, firstMediaChunk)
+  IngestGateway -> StreamService: validateIngest(credentials)
+
+  alt credenciais inválidas
+    StreamService -> StreamRepository: update(status = BLOCKED)
+    StreamService --> IngestGateway: invalid
+    IngestGateway --> Encoder: reject(IngestCredentialsInvalid)
+    Encoder --> Creator: informar falha de conexão
+  else credenciais válidas
+    StreamService --> IngestGateway: valid(streamId)
+    IngestGateway -> MediaProcessing: forward(firstMediaChunk)
+    MediaProcessing -> MediaProcessing: encodeQualityVariants()
+    MediaProcessing -> MediaProcessing: packageSegmentsAndManifest()
+    MediaProcessing -> Origin: store(manifest, firstSegments)
+    Origin --> MediaProcessing: stored
+    MediaProcessing -> StreamService: firstSegmentAvailable(streamId)
+    StreamService -> StreamRepository: update(status = LIVE, startedAt)
+    StreamService -> EventBus: publish(StreamStarted)
+    EventBus --> WebApp: StreamStarted(streamId)
+    WebApp --> Creator: transmissão está ao vivo
+
+    loop enquanto a transmissão estiver ativa
+      Encoder -> IngestGateway: pushMedia(credentials, mediaChunk)
+      IngestGateway -> MediaProcessing: forward(mediaChunk)
+      MediaProcessing -> MediaProcessing: encodeQualityVariants()
+      MediaProcessing -> MediaProcessing: packageSegmentsAndManifest()
+      MediaProcessing -> Origin: store(manifest, segments)
+      Origin --> MediaProcessing: stored
+    end
+  end
+end
+
+note over IngestGateway, Origin
+  Ingestão, transcodificação e empacotamento não foram
+  observados por caixa-preta na Entrega 1. Aqui aparecem
+  como decisões explícitas do modelo de projeto.
+end note
+
+@enduml
