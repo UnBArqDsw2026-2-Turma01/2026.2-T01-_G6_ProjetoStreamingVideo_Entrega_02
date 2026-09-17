@@ -2,6 +2,7 @@
 
 - [Home](/)
 - [Introdução à Entrega 02](/Introducao.md)
+- [Checklist da Entrega 02](/Checklist.md)
 - [Projetos](/Projeto/Projeto.md)
 
 - **Base**
