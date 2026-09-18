@@ -1,0 +1,68 @@
+@startuml
+title DYN-04 | Análise de áudio de uma gravação
+skinparam defaultFontName Arial
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam activityBackgroundColor #FFF1F2
+skinparam activityBorderColor #334155
+|Análise e catálogo|
+start
+:Receber tarefa única por VOD e\nintervalo;
+:AudioFingerprintMatcher.computeAcousticHash(pcmBuffer);
+:queryCopyrightRegistry(fingerprint);
+if (Consulta concluída?) then (não)
+  :Registrar falha e reagendar com limite\nde tentativas;
+  :Escalar para revisão se limite\natingido;
+  stop
+else (sim)
+endif
+if (Correspondência acima do limiar?) then (não)
+  :Registrar ausência de correspondência\nconclusiva;
+  stop
+else (sim)
+endif
+|Análise e catálogo|
+:AuthorizedMusicCatalogProgram.isTrackPermitted(isrc);
+if (Faixa permitida para este uso?) then (sim)
+  :Registrar permissão e versão do\ncatálogo;
+  stop
+else (não)
+  :Encaminhar evidência para revisão\nautorizada;
+endif
+|Revisão humana|
+:Verificar permissão do revisor,\ncontexto e política aplicável;
+if (Revisor autorizado?) then (não)
+  :Negar comando e auditar tentativa;\nmanter caso pendente;
+  stop
+else (sim)
+endif
+if (Silenciamento aprovado?) then (não)
+  :Registrar decisão ou manter análise\npendente;
+  stop
+else (sim)
+endif
+|Processamento do VOD|
+:Validar 0 <= início < fim <= duração\ndo VOD;
+if (Intervalo válido?) then (não)
+  :Registrar inconsistência e devolver\npara revisão;
+  stop
+else (sim)
+endif
+:Registrar comando durável idempotente;
+:VODAudioMute.applyMuteSegment();
+if (Processamento confirmado?) then (sim)
+  :Marcar isMuted=true;
+  :Auditar intervalo e notificar\nresponsável pelo canal;
+else (não / timeout)
+  :Manter pendente; conferir saída e\nreagendar;
+endif
+stop
+legend bottom
+  Versão do artefato: 1.3
+  RD-M04 | DD05 | Reconhecimento acústico é indício técnico.
+  Notificação formal e contestação pertencem a outro processo.
+  Responsável: Hugo Freitas Silva — 2026
+  Revisão: Eduardo Lôbo Moreira
+endlegend
+@enduml

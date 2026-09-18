@@ -1,0 +1,62 @@
+@startuml
+title DYN-03 | Contenção de incidente em vídeo ao vivo
+skinparam defaultFontName Arial
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam maxMessageSize 260
+skinparam sequenceMessageAlign center
+skinparam ParticipantBackgroundColor #FFF1F2
+hide footbox
+autonumber
+boundary "ingestão\n«fronteira»" as I
+participant "engine:LiveVideoSafetyEngine" as E
+control "controle:IncidentCoordinator\n«proposto»" as C
+participant "kill:StreamKillSwitch" as K
+boundary "distribuição de mídia\n«fronteira proposta»" as D
+database "registro de incidentes\n«proposto»" as A
+I ->> E : disponibilizar segmento(streamId, buffer)
+E -> E : extractKeyframe(buffer)
+E -> E : analyzeKeyframe(frameData)
+alt falha do analisador ou resultado inconclusivo
+  E ->> A : registrar indisponibilidade; solicitar revisão
+else sem violação ou abaixo do limiar de contenção
+  E ->> A : registrar avaliação; manter monitoramento
+else violação com limiar e política de contenção satisfeitos
+  E -> E : handleViolationDetected(result)
+  E -> C : conter(streamId, incidentId, result)
+  C -> A : registrar incidente e comando durável único
+  A --> C : commit ou falha
+  alt falha de persistência
+    C ->> I : alertar operação para intervenção manual
+  else comando registrado
+    C -> K : emergencyTerminateStream(streamId, reason)
+    K -> K : dropIngestSocket(channelId)
+    K --> C : true | false | timeout
+    note over C,K : Timeout não comprova que a ingestão foi encerrada.
+    C -> D : bloquearDistribuicao(streamId, incidentId)
+    D --> C : ACK | falha | timeout
+    alt ingestão e distribuição confirmadas
+      C -> A : marcar incidente CONTIDO; auditar confirmações
+      C -> K : broadcastTOSNotice(channelId, message)
+    else confirmação parcial ou ausente
+      C -> A : manter CONTENCAO_PENDENTE + agendar retentativa
+      C ->> I : alertar operação; verificar estado efetivo
+      note over C,D
+        Reexecutar apenas etapas pendentes, com o mesmo incidentId.
+        Após N_tentativas: escalar; não declarar sucesso automático.
+      end note
+    end
+  end
+end
+note over I,D
+  Parar ingestão não elimina segmentos já armazenados ou em buffer.
+  Bloqueio de distribuição e reconexão integra o contrato de contenção.
+  Suspensão de conta depende de processo separado e revisão.
+end note
+legend bottom
+  Versão do artefato: 1.3
+  RD-M03 | DD04 | Autores: Hugo Freitas Silva e Eduardo Lôbo Moreira — 2026
+  Revisão: Philipe Amâncio Reis Caetano
+endlegend
+@enduml

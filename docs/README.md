@@ -13,7 +13,15 @@ Demais diretrizes constam no Moodle.
 |Matrícula | Aluno |
 | -- | -- |
 | 24/1039645  |  Lucas Andrade Zanetti |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 24/1040350  |  Philipe Amâncio Reis Caetano |
+| 24/1011466  |  Mateus Rodrigues Barreto |
+| 24/1041302  |  Hugo Freitas Silva |
+| 24/1011027  |  Eduardo Lôbo Moreira |
+| 23/1026545  |  Pedro Henrique Freire Rodrigues |
+| 24/1039073  |  Heitor Macedo Ricardo |
+| 24/1031852  |  Matheus Lemes Amaral |
+| 24/  |  Pedro Druck Montalvão Reis |
+
 
 ## Sobre 
 Contextualize, usando referências, links, e outros materiais como fontes.
