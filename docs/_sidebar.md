@@ -27,7 +27,7 @@
       - [1.1.1.8. Referências](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.8.Referencias.md)
       - [1.1.1.9. Extra - Diagrama de Componentes](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.9.Extra.DiagramaComponentes.md)
       - [1.1.1.10. Extra - Diagrama de Estados](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.10.Extra.DiagramaEstados.md)
-    - [<span style="color:#16a34a">🟢 1.1.2. SubEquipe_02</span>](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.SubEquipe_02.md)
+    - [<span style="color:#16a34a">🟢 1.1.2. SubEquipe_02</span>](/Base/Relatórios/1.1.2.SubEquipe_02/README.md)
       - [1.1.2.1. FOCO_01 - Modelagem Estática](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.Foco01.ModelagemEstatica.md)
       - [1.1.2.2. FOCO_02 - Modelagem Dinâmica](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica.md)
       - [1.1.2.3. FOCO_03 - IA Generativa](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.3.Foco03.IAGenerativa.md)
