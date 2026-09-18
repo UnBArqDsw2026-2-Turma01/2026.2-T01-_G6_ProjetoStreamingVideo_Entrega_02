@@ -16,14 +16,14 @@
 | Item | Definição | Justificativa |
 | -- | -- | -- |
 | Módulo de Chat | Diagrama de Classes, Diagrama de Implantação e Diagrama de Sequência | Pedro Henrique Freire Rodrigues e Daniel de Oliveira Lira ficaram responsáveis pela abstração estrutural e dinâmica do Chat, conforme [Ata S2_02](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-09-14.md). |
-| Módulo de Monetização | Diagrama de Classes, Diagrama de Implantação e Diagrama de Sequência | Davi Severiano Freitas e Mateus Rodrigues Barreto ficaram responsáveis pelos diagramas estáticos e dinâmicos da aquisição de moedas virtuais e doações, conforme [Ata S2_02](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-09-14.md). |
+| Módulo de Monetização | Diagrama de Classes, Diagrama de Implantação e Diagrama de Sequência | Davi Severiano Freitas e Mateus Rodrigues Barreto ficaram responsáveis pelos diagramas estáticos e dinâmicos de recarga, doação e repasses, com apoio de Daniel de Oliveira Lira no refinamento do diagrama de implantação, conforme atas [Ata S2_02](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-09-14.md) e [Ata S2_03](/Projeto/Atas/Atas_Sg2/ata-S2-03-2026-09-16.md). |
 | Engenharia Reversa (Extra) | Documentação de apoio | Iniciativa extra da subequipe para dar maior embasamento arquitetural aos diagramas elaborados. |
 
 ## 3. Índice do Relatório
 
 | Foco | Página | Status |
 | -- | -- | -- |
-| FOCO_01 | [Modelagem Estática](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.Foco01.ModelagemEstatica.md) | 🟡 Em andamento |
+| FOCO_01 | [Modelagem Estática](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.Foco01.ModelagemEstatica.md) | 🟢 Concluído |
 | FOCO_02 | [Modelagem Dinâmica](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica.md) | 🟢 Concluído |
 | FOCO_03 | [IA Generativa](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.3.Foco03.IAGenerativa.md) | 🟢 Concluído |
 | Extra | [Engenharia Reversa](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.Extra.EngenhariaReversa.md) | 🟢 Concluído |
@@ -35,11 +35,15 @@ O trabalho da SubEquipe_02 foi pautado na colaboração por módulos funcionais,
 
 ## 5. Rastreabilidade & Elos com Outros Artefatos (visão consolidada)
 
-| Artefato desta subequipe | Origem / insumo | Elo com | Observação |
-| -- | -- | -- | -- |
-| **Modelagem Estática** | Módulos de Monetização e Chat | [Modelagem Dinâmica](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica.md) | Define a estrutura de classes e relações que sustenta as regras de negócio. |
-| **Modelagem Dinâmica** | Fluxos Mapeados (Entrega 1) | [Modelagem Estática](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.Foco01.ModelagemEstatica.md) | Detalha a troca de mensagens no tempo para interações de chat e pagamentos. |
-| **Engenharia Reversa** | Plataforma de referência | Focos 01 e 02 | Mapeia componentes e APIs como base empírica da modelagem de software. |
+| Artefato desta subequipe | Origem / insumo | Elo com | Responsáveis | Observação |
+| -- | -- | -- | -- | -- |
+| **Modelagem Estática — Classes (Monetização)** | Requisitos de Recarga/Doação/Saque e Eng. Reversa | [Modelagem Dinâmica](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica.md) | Davi Severiano Freitas, Mateus Rodrigues Barreto | Modelo em 4 pacotes, validado em duas passagens contra os fluxos de sequência e refinamentos A01–A11. |
+| **Modelagem Estática — Implantação (Monetização)** | Topologia de nós e fluxos de webhook/broadcast | [Modelagem Dinâmica](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica.md) | Davi Severiano Freitas, Mateus Rodrigues Barreto (apoio: Daniel de Oliveira Lira) | Distribuição em 4 nós físicos/lógicos com confirmação assíncrona por webhook ao backend. |
+| **Modelagem Estática — Classes (Chat)** | Mensageria, salas e moderação | [Modelagem Dinâmica](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica.md) | Pedro Henrique Freire Rodrigues, Daniel de Oliveira Lira | Separação em camadas com estereótipos UML (`<<boundary>>`, `<<control>>`, `<<service>>`, `<<entity>>`). |
+| **Modelagem Estática — Implantação (Chat)** | Infraestrutura Pub/Sub e Gateway WebSocket | [Modelagem Dinâmica](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica.md) | Pedro Henrique Freire Rodrigues, Daniel de Oliveira Lira | Topologia física detalhando servidores de aplicação, gateway e brokers de mensageria. |
+| **Modelagem Dinâmica — Sequências de Chat** | Casos de uso de envio, fanout e moderação | [Modelagem Estática](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.Foco01.ModelagemEstatica.md) | Pedro Henrique Freire Rodrigues (`ModuloChat`, `ConectarEAssinarChat`, `EnviarMensagemChat`), Daniel de Oliveira Lira (`FanoutMensagemChat`, `ModerarMensagemChat`) | 5 diagramas cobrindo cenários nominal, alternativo e de auditoria algorítmica. |
+| **Modelagem Dinâmica — Sequências de Monetização** | Casos de uso de recarga, doação e repasse | [Modelagem Estática](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.Foco01.ModelagemEstatica.md) | Davi Severiano Freitas, Mateus Rodrigues Barreto | 3 diagramas com validação de chaves de idempotência, confirmação assíncrona e rotina Net-15. |
+| **Engenharia Reversa (Extra)** | Plataforma de referência e inspeção de rede | Focos 01 e 02 | Mateus Rodrigues Barreto (Parte A - Super Chat), Davi Severiano Freitas (Parte B - Habilitação e Net-15) | 16 achados (`SC01`–`SC06`, `SQ09`–`SQ18`) e 20 evidências visuais servindo de lastro empírico. |
 
 ## 6. Senso Crítico (visão consolidada)
 
@@ -69,3 +73,4 @@ O senso crítico detalhado de cada foco está registrado nas páginas dos respec
 | 1.3 | 18/09/2026 | Atualização do status do FOCO_03 (IA Generativa) para concluído após inclusão de todos os relatos individuais | Davi Severiano Freitas | Daniel de Oliveira Lira, Mateus Rodrigues Barreto, Pedro Henrique Freire Rodrigues |
 | 1.4 | 18/09/2026 | Preenchimento do senso crítico consolidado da SubEquipe_02 na entrega de modelagem | Davi Severiano Freitas | Daniel de Oliveira Lira, Mateus Rodrigues Barreto, Pedro Henrique Freire Rodrigues |
 | 1.5 | 18/09/2026 | Expansão exaustiva dos comprobatórios individuais (commits, atas S2_01 a S2_04 e PRs) de todos os membros da subequipe | Davi Severiano Freitas | |
+| 1.6 | 18/09/2026 | Atualização do status do FOCO_01 (Modelagem Estática) para concluído após consolidação dos diagramas finais de classes e implantação de Monetização | Davi Severiano Freitas | |
