@@ -1,3 +1,4 @@
 # Compilador PlantUML de uso local (solicitado pela equipe)
 /tools/compile_plantuml_local.py
 __pycache__/
+.DS_Store
