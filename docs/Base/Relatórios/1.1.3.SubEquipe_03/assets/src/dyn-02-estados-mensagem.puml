@@ -1,0 +1,50 @@
+@startuml
+title DYN-02 | Ciclo de vida da decisão de moderação
+skinparam defaultFontName Arial
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam stateBackgroundColor #EFF6FF
+skinparam stateBorderColor #334155
+hide empty description
+state "Recebida" as Recebida
+state "Em avaliação" as Avaliando
+state "Retida em quarentena" as Retida
+state "Aprovada\n(publicação pendente)" as Aprovada
+state "Publicada" as Publicada
+state "Bloqueada" as Bloqueada
+state "Rejeitada na revisão" as Rejeitada
+state "Expirada" as Expirada
+[*] --> Recebida : aceitar [ID novo e envio autorizado]
+Recebida --> Avaliando : iniciar / capturar policyVersion
+Avaliando --> Aprovada : resultado [ALLOW] / auditar e criar outbox
+Avaliando --> Retida : resultado [HOLD_FOR_MOD_REVIEW]\nou timeout / enqueue e auditar
+Avaliando --> Bloqueada : resultado [BLOCK_SILENTLY ou AUTO_TIMEOUT]\n/ auditar; agendar sanção se AUTO_TIMEOUT
+Retida --> Aprovada : aprovar [G] / release(id, true, modId);\nauditar e criar outbox
+Retida --> Rejeitada : rejeitar [G] / release(id, false, modId); auditar
+Retida --> Expirada : after(T_revisao) [ainda Retida]\n/ remover da fila e auditar
+Retida --> Retida : decidir [sem permissão] / negar e auditar tentativa
+Aprovada --> Aprovada : timeout de entrega / reagendar mesmo evento
+Aprovada --> Publicada : ACK [mesmo messageId] / marcar entrega
+Publicada --> [*]
+Bloqueada --> [*]
+Rejeitada --> [*]
+Expirada --> [*]
+note left of Retida
+  G = checkPermission(modId, "MODERATE_CHAT", channelId)
+  e agora < expiresAt e versão esperada igual à persistida.
+  Checagem e transição serializadas por mensagem.
+  Decisões concorrentes/tardias retornam estado atual.
+end note
+note bottom of Publicada
+  Final deste processo de decisão/entrega.
+  Exclusão posterior é outro processo de moderação.
+end note
+legend bottom
+  Versão do artefato: 1.2
+  Transição + auditoria + outbox são atômicas.
+  Apenas Aprovada pode originar publicação.
+  RD-M01, RD-M02 | DD02–DD03 | Estado de moderação proposto
+  Responsável: Hugo Freitas Silva — 2026
+endlegend
+@enduml
