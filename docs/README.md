@@ -20,7 +20,10 @@ Demais diretrizes constam no Moodle.
 | 23/1026545  |  Pedro Henrique Freire Rodrigues |
 | 24/1039073  |  Heitor Macedo Ricardo |
 | 24/1031852  |  Matheus Lemes Amaral |
-| 24/  |  Pedro Druck Montalvão Reis |
+| 24/1040332  |  Pedro Druck Montalvão Reis |
+| 24/1011018  |  Davi Severiano Freitas |
+| 24/1025505  |  Daniel de Oliveira Lira |
+
 
 
 ## Sobre 
