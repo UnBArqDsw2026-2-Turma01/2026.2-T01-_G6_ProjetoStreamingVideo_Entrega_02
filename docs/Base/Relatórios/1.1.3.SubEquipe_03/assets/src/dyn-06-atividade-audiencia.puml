@@ -1,0 +1,72 @@
+@startuml
+title DYN-06 | Auditoria da audiência em uma janela temporal
+skinparam defaultFontName Arial
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam activityBackgroundColor #ECFDF5
+skinparam activityBorderColor #334155
+|Coordenação e persistência|
+start
+:Fixar streamId, instante t,\npolicyVersion e tolerância de atraso;
+:Selecionar sessões distintas ativas em\nt e eventos válidos;
+note right
+  Ativa: startedAt <= t, endedAt nulo ou >
+  t,
+  e último heartbeat aceito dentro de
+  T_inatividade.
+  Eventos futuros/atrasados não reabrem
+  janela encerrada.
+end note
+|Auditoria de audiência|
+:AntiViewbotDetector.detectBotCluster(beacons);
+:Inicializar conjunto de rejeições R\nvazio;
+while (Existe sessão ainda não avaliada?) is (sim)
+  :Selecionar uma sessão e seu histórico\nna janela;
+  :AntiViewbotDetector.evaluateBeacon(beacon);
+  :Combinar histórico, cluster e política\nversionada;
+  if (Evidência suficiente segundo a política?) then (sim)
+    :Adicionar sessionId a R; registrar\nmotivos;
+  else (não)
+    :Manter sessão na contagem; sinalizar\npara análise se necessário;
+  endif
+endwhile (não)
+note right
+  ASN, aba oculta, áudio mudo ou ausência de
+  mouse,
+  isoladamente, não justificam rejeição.
+  evaluateBeacon: true = suspeita, conforme
+  contrato DD07.
+end note
+|Auditoria de audiência|
+:CCUConsolidator.discardFakeSessions(R);
+note right
+  Exclusão apenas da contagem da janela.
+  Não encerra reprodução nem aplica
+  banimento.
+end note
+:CCUConsolidator.calculateAuditedCCU();
+:Construir CCUSnapshot sobre o mesmo\nconjunto S;
+note right
+  totalConnections = |S|
+  rejectedBotConnections = |R|, com R
+  contido em S
+  auditedConcurrentViewers = |S| - |R|
+  peakConcurrentViewers = max(pico anterior,
+  auditados)
+end note
+|Coordenação e persistência|
+:Gravar snapshot e motivos por\n(streamId, t, policyVersion);
+if (Commit confirmado?) then (sim)
+  :Publicar contagem agregada e atualizar\npico atomicamente;
+else (não)
+  :Manter última contagem confirmada e\nsinalizar atraso;
+  :Repetir a mesma janela sem incrementar\ncontadores;
+endif
+stop
+legend bottom
+  Versão do artefato: 1.2
+  RD-T02 | DD07, DD09 | Conta sessões concorrentes, não pessoas únicas.
+  Responsável: Philipe Amâncio Reis Caetano — 2026
+endlegend
+@enduml
