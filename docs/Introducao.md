@@ -39,19 +39,19 @@ Representa a Nota 2 da média ponderada da disciplina (peso de 30%).
 
 ### 🟢 SubEquipe_02 — Chat ao vivo, Monetização
 
-| Membro |
-| -- |
-| Davi Severiano Freitas |
-| Daniel de Oliveira Lira |
-| Mateus Rodrigues Barreto |
-| Pedro Henrique Freire Rodrigues |
+| Membro | GitHub |
+| -- | -- |
+| Davi Severiano Freitas | [@Davi-UnB](https://github.com/Davi-UnB) |
+| Daniel de Oliveira Lira | [@Daniellira540](https://github.com/Daniellira540) |
+| Mateus Rodrigues Barreto | [@Mateus0xC](https://github.com/Mateus0xC) |
+| Pedro Henrique Freire Rodrigues | [@Pedro-Henrique3](https://github.com/Pedro-Henrique3) |
 
 ### 🟠 SubEquipe_03 — Autenticação, Telemetria, Moderação
 
-| Membro |
-| -- |
-| Hugo Freitas Silva |
-| Philipe Amancio Reis Caetano |
-| Eduardo Lôbo Moreira |
+| Membro | GitHub |
+| -- | -- |
+| Hugo Freitas Silva | [@HugoFreitass](https://github.com/HugoFreitass) |
+| Philipe Amancio Reis Caetano | [@Phill-Chill](https://github.com/Phill-Chill) |
+| Eduardo Lôbo Moreira | [@EduLoboM](https://github.com/EduLoboM) |
 
 > Divisão de módulos e tecnologia de referência (TypeScript) definidas na [Reunião Geral 01](/Projeto/Atas/ata-G01-2026-09-11.md).
