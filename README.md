@@ -1,31 +1,25 @@
-# RepositorioTemplate
+# Plataforma de Streaming de Vídeo — Entrega 02
 
-Repositório que deve ser utilizado como template inicial pelos grupos da matéria de Arquitetura e Desenho de Software.
+Repositório do Grupo 06 da disciplina **FGA0208 — Arquitetura e Desenho de Software**, da Universidade de Brasília.
 
-## Introdução
+Esta entrega reúne a modelagem estática e dinâmica em UML dos domínios de transmissão ao vivo, conteúdo gerado pelo usuário, clipagem, reprodução, chat, monetização, autenticação, moderação e telemetria. Também registra as lições aprendidas e a análise crítica do uso de IA Generativa durante o trabalho.
 
-Este repositório traz um template de repo de documentação a ser seguido pelos grupos de arquitetura e desenho de software.
+## Documentação
 
-## Tecnologia
+A documentação publicada está disponível no [GitHub Pages](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/).
 
-A geração do site estático é realizada utilizando o [docsify](https://docsify.js.org/).
+Os principais pontos de entrada são:
 
-```shell
-"Docsify generates your documentation website on the fly. Unlike GitBook, it does not generate static html files. Instead, it smartly loads and parses your Markdown files and displays them as a website. To start using it, all you need to do is create an index.html and deploy it on GitHub Pages."
+- [Modelagem](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/1.Modelagem)
+- [Participações](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/1.2.ParticipacoesModelagem)
+- [Iniciativas extras](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/1.3.IniciativasExtras)
+
+## Visualização local
+
+O site utiliza Docsify e pode ser aberto com um servidor HTTP estático:
+
+```bash
+python3 -m http.server 8000 --directory docs
 ```
 
-### Instalando o docsify
-
-Execute o comando:
-
-```shell
-npm i docsify-cli -g
-```
-
-### Executando localmente
-
-Para iniciar o site localmente, utilize o comando:
-
-```shell
-docsify serve ./docs
-```
+Depois, acesse `http://localhost:8000`.

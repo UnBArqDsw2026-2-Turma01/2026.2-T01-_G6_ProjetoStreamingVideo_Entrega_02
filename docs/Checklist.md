@@ -10,7 +10,7 @@ Legenda: ✅ concluído · 🟡 em andamento · ⬜ não iniciado.
 
 | Subequipe | FOCO_01 (Estática) | FOCO_02 (Dinâmica) | FOCO_03 (IA Generativa) | Extras |
 | -- | -- | -- | -- | -- |
-| 🔵 [SubEquipe_01](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.SubEquipe_01.md) | 🟡 Em andamento | 🟡 Em andamento | ⬜ Não iniciado | Metodologia, Rastreabilidade e Referências ✅ |
+| 🔵 [SubEquipe_01](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.SubEquipe_01.md) | ✅ Concluído | ✅ Concluído | ✅ Concluído | Metodologia, Rastreabilidade, Referências, Componentes e Estados ✅ |
 | 🟢 [SubEquipe_02](/Base/Relatórios/1.1.2.SubEquipe_02/README.md) | ✅ Concluído (4 diagramas) | ✅ Concluído (8 diagramas) | ✅ Concluído | FOCO_04 Engenharia Reversa ✅ · Atas S2_01 a S2_04 ✅ · Referências ✅ |
 | 🟠 [SubEquipe_03](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.SubEquipe_03.md) | ✅ Concluído (5 diagramas) | ✅ Concluído (7 diagramas) | ✅ Concluído | Metodologia, Rastreabilidade, Versionamentos, Referências e critérios de aprofundamento ✅ |
 
@@ -18,12 +18,12 @@ Legenda: ✅ concluído · 🟡 em andamento · ⬜ não iniciado.
 
 | Item | Status | Já feito | Falta |
 | -- | -- | -- | -- |
-| [FOCO_01 — Modelagem Estática](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.Foco01.ModelagemEstatica.md) | 🟡 | Diagrama de classes com os 4 pacotes desenhados; componente *Serviço de domínio* (Lucas) e pacote *Conteúdo gerado pelo usuário / Clipagem* (Matheus + Pedro Druck, [aditivo v2](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.2.Foco01.ConteudoGeradoUsuario.md)) preenchidos, com 13 evidências e decisões DE01–DE10. | Atributos/operações dos pacotes **Usuário / Canais** (A01, Matheus) e **Reprodução / Playback** (A03, Heitor) — tabela de estado ainda marca os dois como `⬜ a preencher`. |
-| [FOCO_02 — Modelagem Dinâmica](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.Foco02.ModelagemDinamica.md) | 🟡 | Diagrama de sequência *Iniciar transmissão ao vivo (UGC)* (Lucas) completo, com evidências e decisões DM01–DM06. | Diagramas de sequência dos temas **Transmissão ao vivo** (Heitor) e **Clipagem** (Pedro Druck + Matheus, em dupla) — atribuídos na [Ata S1_01](/Projeto/Atas/Atas_Sg1/ata-S1-01-2026-09-15.md), ainda "em andamento". |
-| [FOCO_03 — IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.Foco03.IAGenerativa.md) | ⬜ | Página estruturada (tabela de participantes + registro de uso de IA). | Nenhum dos 4 membros preencheu lições aprendidas / uso de IA generativa; tabela de registro de uso de IA vazia. |
+| [FOCO_01 — Modelagem Estática](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.Foco01.ModelagemEstatica.md) | ✅ | Diagrama de classes integrado em quatro componentes: Serviço de domínio (Lucas), UGC/Clipagem (Pedro + Matheus) e Usuários/Canais + Reprodução/Playback (Heitor), com fonte Draw.io, PNG, evidências e decisões DE01–DE10. | — |
+| [FOCO_02 — Modelagem Dinâmica](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.Foco02.ModelagemDinamica.md) | ✅ | Três diagramas de sequência concluídos: UGC (Lucas), Transmissão ao vivo/A05 (Heitor) e Clipagem/A06 (Pedro + Matheus), com fontes e comprobatórios. | — |
+| [FOCO_03 — IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.Foco03.IAGenerativa.md) | ✅ | Pontos de vista dos quatro integrantes e registro auditável do uso de Codex e Claude, incluindo acertos, correções e limites. | — |
 | [Metodologia](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.4.Metodologia.md) | ✅ | Ritos, ferramentas e fluxo de revisão da subequipe documentados. | — |
-| [Rastreabilidade & Elos](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Rastreabilidade.md) | 🟡 | Elos A01–A04 e decisões D01–D04 registrados. | Artefatos A05 (sequência Transmissão) e A06 (sequência Clipagem) marcados `(pendente)`. |
-| [Versionamentos & Participações](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.Versionamentos.md) | 🟡 | Lucas com 2 PRs registrados; contribuição de Matheus/Pedro Druck registrada (tabela separada, revisão UGC). | Linhas de Matheus e Pedro Druck na tabela principal de Contribuições vazias; Heitor sem nenhuma contribuição registrada. |
+| [Rastreabilidade & Elos](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Rastreabilidade.md) | ✅ | Artefatos A01, A04, A05, A06, A07 e A08 ligados às decisões, evidências, fontes e PRs correspondentes. | — |
+| [Versionamentos & Participações](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.Versionamentos.md) | ✅ | Contribuições dos quatro integrantes registradas por artefato, com datas, PRs e coautorias dos diagramas extras. | — |
 | [Referências](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.8.Referencias.md) | ✅ | Bibliografia preenchida. | — |
 
 ## 🟢 SubEquipe_02 — Chat ao vivo, Monetização
@@ -59,4 +59,4 @@ Legenda: ✅ concluído · 🟡 em andamento · ⬜ não iniciado.
 | -- | -- | -- |
 | [1.2 Participações — Modelagem](/Base/1.2.ParticipacoesModelagem.md) | ✅ | Participações de todas as subequipes (01, 02 e 03) preenchidas com significância e comprobatórios claros com links. |
 | [1.3 Iniciativas Extras](/Base/1.3.IniciativasExtras.md) | ✅ | Iniciativas da SubEquipe 01 (Componentes e Estados), SubEquipe 02 (Engenharia Reversa Complementar, Atas e Referências) e SubEquipe 03 (Aprofundamento) consolidadas com comprobatórios. |
-| Home ([README.md](/README.md)) | ⬜ | Tabela de alunos com linha placeholder (`xx/xxxxxx`); seções "Sobre" e "Screenshots da Segunda Entrega" vazias. |
+| Home ([README.md](/README.md)) | ✅ | Apresentação do projeto, alunos, escopo, três screenshots representativos, instruções de visualização e atalhos para os artefatos. |
