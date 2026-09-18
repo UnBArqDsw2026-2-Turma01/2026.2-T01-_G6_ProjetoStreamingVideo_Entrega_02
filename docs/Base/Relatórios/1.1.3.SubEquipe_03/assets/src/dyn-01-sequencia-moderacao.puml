@@ -1,0 +1,72 @@
+@startuml
+title DYN-01 | Inspeção de mensagem antes da publicação
+skinparam defaultFontName Arial
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 260
+skinparam ParticipantBackgroundColor #EFF6FF
+skinparam ParticipantBorderColor #334155
+hide footbox
+autonumber
+actor "Autor da mensagem" as U
+control "coord:ModerationCoordinator\n«proposto»" as C
+participant "pipeline:AutoModPipeline" as P
+participant "regra:IModerationRule" as R
+database "store:ModerationStore\n«proposto»" as S
+boundary "chat:ChatGateway\n«fronteira proposta»" as G
+U -> C : enviar(messageId, channelId, texto)
+note over U,C
+  Precondição: identidade validada e envio autorizado no canal.
+  messageId é estável nas retentativas; ctx usa identidade do servidor.
+end note
+C -> S : reservar(messageId, hashDoConteudo)
+S --> C : NOVA | REPETIDA | CONFLITO
+note over C,S : Reservas incompletas são retomadas por worker com exclusão mútua.
+alt REPETIDA ou CONFLITO
+  C --> U : estado atual ou rejeição por reutilização indevida do ID
+else NOVA
+  C -> P : inspectMessage(ctx)
+  activate P
+  loop cada regra habilitada da versão de política capturada
+    P -> R : evaluate(ctx)
+    R --> P : RuleEvaluationResult ou falha/timeout
+  end
+  note over P,R
+    Precedência proposta: AUTO_TIMEOUT > BLOCK_SILENTLY >
+    HOLD_FOR_MOD_REVIEW > ALLOW. Falha sem decisão
+    restritiva conclusiva resulta em retenção, nunca em ALLOW.
+  end note
+  P --> C : decisão agregada
+  deactivate P
+  alt ALLOW
+    C -> S : confirmar Aprovada + auditoria + outbox de publicação
+  else HOLD_FOR_MOD_REVIEW ou falha de avaliação
+    C -> S : confirmar Retida + QuarantineQueue.enqueue(dto) + auditoria
+    ref over C,S : DYN-02: revisão autorizada, concorrência e expiração
+  else BLOCK_SILENTLY
+    C -> S : confirmar Bloqueada + auditoria
+  else AUTO_TIMEOUT
+    C -> S : confirmar Bloqueada + auditoria + outbox de TimeoutAction
+    note over C,S : Worker executa TimeoutAction.execute() de modo idempotente.
+  end
+  S --> C : commit confirmado ou erro
+  alt commit confirmado
+    C --> U : recebimento confirmado (sem expor regras internas)
+    opt existe evento de publicação na outbox
+      S ->> G : publicar(messageId, channelId, texto)
+      G -> G : deduplicar por messageId e distribuir
+      G -->> S : ACK de publicação
+      note over S,G : ACK perdido: reenviar o mesmo evento, sem duplicar a mensagem.
+    end
+  else erro no commit
+    C --> U : falha temporária; repetir com o mesmo messageId
+  end
+end
+legend bottom
+  Versão do artefato: 1.2
+  RD-M01, RD-M02 | DD01–DD03 | Modelo de projeto
+  Responsável: Hugo Freitas Silva — 2026
+endlegend
+@enduml

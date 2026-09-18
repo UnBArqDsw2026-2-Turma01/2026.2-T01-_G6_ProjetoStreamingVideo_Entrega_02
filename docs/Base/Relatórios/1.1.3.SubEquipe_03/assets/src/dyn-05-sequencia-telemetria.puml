@@ -1,0 +1,59 @@
+@startuml
+title DYN-05 | Coleta confiável de telemetria do player
+skinparam defaultFontName Arial
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam maxMessageSize 260
+skinparam sequenceMessageAlign center
+skinparam ParticipantBackgroundColor #ECFDF5
+hide footbox
+autonumber
+boundary "player\n«fronteira»" as P
+participant "collector:ITelemetryCollector" as C
+control "ingest:TelemetryIngestor\n«proposto»" as I
+database "inbox durável\n«proposta»" as Q
+participant "sink:IMetricsSink" as S
+control "auditoria de audiência\nDYN-06" as A
+loop a cada intervalo de coleta enquanto a sessão está ativa
+  P -> C : recordMetric(ViewerQoEMetric / ViewerEngagementBeacon)
+end
+P -> C : flush() [limite de itens ou tempo]
+C --> P : TelemetryBatch
+note over P,C
+  Manter lote até ACK de aceitação durável.
+  batchId e (sessionId, sequenceNumber) estáveis na retentativa.
+end note
+P ->> I : enviar lote de TelemetryEventEnvelope (alias local)
+I -> I : validar credencial de coleta, vínculo da sessão,\nesquema, integridade, tamanho e timestamps
+alt lote inválido ou sessão incompatível
+  I -->> P : rejeição permanente com motivo; descartar lote inválido
+else limite temporário excedido
+  I -->> P : tentar novamente após intervalo indicado
+else lote válido
+  I -> Q : inserir eventos inéditos + trabalho pendente, atomicamente
+  Q --> I : commit (inclui duplicados conhecidos) | falha
+  alt falha no commit
+    I -->> P : indisponível; manter lote e repetir com backoff
+  else aceitação durável
+    I -->> P : ACK(batchId); liberar buffer local
+    Q -> S : writeBatch(batch único)
+    S --> Q : true | false | exceção
+    alt writeBatch confirmado
+      Q ->> A : processar eventos inéditos com IDs estáveis
+      A -->> Q : ACK de processamento idempotente
+      Q -> Q : concluir trabalho após ambos os ACKs
+    else erro ou confirmação perdida
+      Q -> Q : reagendar mesmo lote; após limite, fila de falhas
+    end
+  end
+end
+note over Q,A
+  Entrega ao menos uma vez. Consumidores deduplicam por evento.
+  Reinício após persistir e antes do ACK não duplica métricas nem CCU.
+end note
+legend bottom
+  Versão do artefato: 1.2
+  RD-T01 | DD06, DD09 | Responsável: Philipe Amâncio Reis Caetano — 2026
+endlegend
+@enduml
