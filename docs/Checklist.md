@@ -56,6 +56,6 @@ Legenda: ✅ concluído · 🟡 em andamento · ⬜ não iniciado.
 
 | Item | Status | Observação |
 | -- | -- | -- |
-| [1.2 Participações — Modelagem](/Base/1.2.ParticipacoesModelagem.md) | 🟡 | Participações das SubEquipes 01 e 03 preenchidas com significância e comprobatórios; falta consolidar a SubEquipe 02. |
-| [1.3 Iniciativas Extras](/Base/1.3.IniciativasExtras.md) | 🟡 | Iniciativas da SubEquipe 01 e critérios de aprofundamento da SubEquipe 03 registrados com comprobatórios; falta incorporar a iniciativa de engenharia reversa da SubEquipe 02. |
+| [1.2 Participações — Modelagem](/Base/1.2.ParticipacoesModelagem.md) | ✅ | Participações de todas as subequipes (01, 02 e 03) preenchidas com significância e comprobatórios claros com links. |
+| [1.3 Iniciativas Extras](/Base/1.3.IniciativasExtras.md) | ✅ | Iniciativas da SubEquipe 01 (Componentes e Estados), SubEquipe 02 (Engenharia Reversa Complementar, Atas e Referências) e SubEquipe 03 (Aprofundamento) consolidadas com comprobatórios. |
 | Home ([README.md](/README.md)) | ⬜ | Tabela de alunos com linha placeholder (`xx/xxxxxx`); seções "Sobre" e "Screenshots da Segunda Entrega" vazias. |

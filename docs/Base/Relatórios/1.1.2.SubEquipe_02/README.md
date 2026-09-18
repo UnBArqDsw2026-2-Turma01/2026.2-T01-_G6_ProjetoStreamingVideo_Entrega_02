@@ -44,7 +44,9 @@ O trabalho da SubEquipe_02 foi pautado na colaboração por módulos funcionais,
 ## 6. Senso Crítico (visão consolidada)
 
 O senso crítico detalhado de cada foco está registrado nas páginas dos respectivos artefatos. Consolidando a vivência da SubEquipe_02 ao longo da Entrega 2:
-- (A preencher com as conclusões globais da entrega de Modelagem)
+- **Interdependência Estático-Dinâmica**: A modelagem dinâmica por meio dos diagramas de sequência revelou-se indispensável para auditar e validar o modelo estático de classes. Atributos essenciais (como chaves de idempotência em transações financeiras e carimbos de auditoria em mensagens quarentenadas) só emergiram com clareza ao desenhar a troca temporal de mensagens.
+- **Validação Empírica contra Suposições de IA**: A adoção de uma postura de ceticismo ativo assegurou que nenhuma alucinação de LLMs (como dependências síncronas inviáveis ou generalizações excessivas) fosse incorporada sem confirmação empírica e revisão técnica humana.
+- **Engenharia Reversa como Lastro de Domínio**: Aprofundar a investigação das regras contratuais e fluxos de repasse (ciclo Net-15) e do Super Chat garantiu que os diagramas refletissem restrições reais de sistemas de streaming em escala de produção.
 
 ## 7. Versionamentos & Participações
 
@@ -65,3 +67,4 @@ O senso crítico detalhado de cada foco está registrado nas páginas dos respec
 | 1.1 | 18/09/2026 | Atualização do status dos focos concluídos (Modelagem Dinâmica, Engenharia Reversa e Referências) e correção dos links internos para rotas absolutas do Docsify | Davi Severiano Freitas | Daniel de Oliveira Lira, Mateus Rodrigues Barreto, Pedro Henrique Freire Rodrigues |
 | 1.2 | 18/09/2026 | Preenchimento de Versionamentos & Participações com commits da Entrega 2 | Pedro Henrique Freire Rodrigues | |
 | 1.3 | 18/09/2026 | Atualização do status do FOCO_03 (IA Generativa) para concluído após inclusão de todos os relatos individuais | Davi Severiano Freitas | Daniel de Oliveira Lira, Mateus Rodrigues Barreto, Pedro Henrique Freire Rodrigues |
+| 1.4 | 18/09/2026 | Preenchimento do senso crítico consolidado da SubEquipe_02 na entrega de modelagem | Davi Severiano Freitas | Daniel de Oliveira Lira, Mateus Rodrigues Barreto, Pedro Henrique Freire Rodrigues |
