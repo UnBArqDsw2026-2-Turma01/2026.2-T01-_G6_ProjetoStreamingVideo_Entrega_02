@@ -11,7 +11,7 @@ Legenda: ✅ concluído · 🟡 em andamento · ⬜ não iniciado.
 | Subequipe | FOCO_01 (Estática) | FOCO_02 (Dinâmica) | FOCO_03 (IA Generativa) | Extras |
 | -- | -- | -- | -- | -- |
 | 🔵 [SubEquipe_01](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.SubEquipe_01.md) | 🟡 Em andamento | 🟡 Em andamento | ⬜ Não iniciado | Metodologia, Rastreabilidade e Referências ✅ |
-| 🟢 [SubEquipe_02](/Base/Relatórios/1.1.2.SubEquipe_02/README.md) | 🟡 Em andamento | ✅ Concluído (8 diagramas) | 🟡 Em andamento | FOCO_04 Engenharia Reversa ✅ · Referências ✅ |
+| 🟢 [SubEquipe_02](/Base/Relatórios/1.1.2.SubEquipe_02/README.md) | 🟡 Em andamento | ✅ Concluído (8 diagramas) | ✅ Concluído | FOCO_04 Engenharia Reversa ✅ · Referências ✅ |
 | 🟠 [SubEquipe_03](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.SubEquipe_03.md) | ✅ Concluído (5 diagramas) | ✅ Concluído (7 diagramas) | ✅ Concluído | Metodologia, Rastreabilidade, Versionamentos, Referências e critérios de aprofundamento ✅ |
 
 ## 🔵 SubEquipe_01 — Transmissão ao vivo, UGC, Clipagem
@@ -32,7 +32,7 @@ Legenda: ✅ concluído · 🟡 em andamento · ⬜ não iniciado.
 | -- | -- | -- | -- |
 | [FOCO_01 — Modelagem Estática](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.Foco01.ModelagemEstatica.md) | 🟡 | Participantes, metodologia, fundamentação teórica (Booch/Rumbaugh/Jacobson; OMG) e matriz de rastreabilidade. Diagramas de classes de Chat e Monetização inseridos, diagrama de implantação de Chat inserido. | Diagrama de implantação de Monetização e fechamento do Senso Crítico. |
 | [FOCO_02 — Modelagem Dinâmica](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica.md) | ✅ | Estrutura, metodologia, fundamentação, matriz de rastreabilidade e todos os 8 diagramas de sequência inseridos (Recarga, Doação, Saque, ModuloChat, ConectarEAssinarChat, EnviarMensagemChat, FanoutMensagemChat, ModerarMensagemChat). | — |
-| [FOCO_03 — IA Generativa](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.3.Foco03.IAGenerativa.md) | 🟡 | Página estruturada (Metodologia, Fundamentação, Relatos Individuais, Senso Crítico, Referências). | Preenchimento dos relatos individuais e reflexões de cada integrante da subequipe. |
+| [FOCO_03 — IA Generativa](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.3.Foco03.IAGenerativa.md) | ✅ | Pontos de vista individuais de todos os quatro integrantes (Davi, Daniel, Pedro e Mateus) registrados com lições aprendidas, acertos, alucinações/correções e comprobatórios. | — |
 | [FOCO_04 — Engenharia Reversa](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.Extra.EngenhariaReversa.md) *(extra)* | ✅ | Engenharia reversa do Super Chat de uma segunda plataforma e de monetização/repasse ao criador, com evidências (Figuras 26–45) e achados SC01–SC06 e SQ01–SQ16. | — |
 | [Referências](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.5.Referencias.md) | ✅ | Bibliografia preenchida em formato ABNT (R01 a R06) e fontes complementares com links. | — |
 | Senso Crítico consolidado (nível subequipe) | ⬜ | — | Trecho da página principal registra "(A preencher com as conclusões globais da entrega de Modelagem)". |
