@@ -25,6 +25,7 @@
       - [1.1.1.6. Versionamentos & Participações](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.Versionamentos.md)
       - [1.1.1.7. Diretrizes](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.Diretrizes.md)
       - [1.1.1.8. Referências](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.8.Referencias.md)
+      - [1.1.1.9. Extra - Diagrama de Componentes](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.9.Extra.DiagramaComponentes.md)
     - [<span style="color:#16a34a">🟢 1.1.2. SubEquipe_02</span>](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.SubEquipe_02.md)
       - [1.1.2.1. FOCO_01 - Modelagem Estática](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.Foco01.ModelagemEstatica.md)
       - [1.1.2.2. FOCO_02 - Modelagem Dinâmica](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica.md)
