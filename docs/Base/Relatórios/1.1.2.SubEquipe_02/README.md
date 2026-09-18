@@ -31,7 +31,7 @@
 
 ## 4. Metodologia da Subequipe
 
-O trabalho da SubEquipe_02 foi pautado na colaboração por módulos funcionais, conforme definido na [Ata S2_02](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-09-14.md). Diferente da divisão inicial, optou-se pela especialização total em domínios: Chat e Monetização. O desenvolvimento iterativo foi conduzido com o apoio de ferramentas como o `sequencediagram.org` e o `PlantUML` para validação sintática da lógica, além da verificação cruzada através de diagramas dinâmicos para aprimorar os diagramas estáticos (como registrado na [Ata S2_03](/Projeto/Atas/Atas_Sg2/ata-S2-03-2026-09-16.md)), sendo o trabalho final consolidado na ferramenta visual Miro.
+O trabalho da SubEquipe_02 foi pautado na colaboração por módulos funcionais, conforme definido na [Ata S2_02](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-09-14.md). Diferente da divisão inicial, optou-se pela especialização total em domínios: Chat e Monetização. O desenvolvimento iterativo foi conduzido com o apoio de ferramentas como o `sequencediagram.org` e o `PlantUML` para validação sintática da lógica, além da verificação cruzada através de diagramas dinâmicos para aprimorar os diagramas estáticos (como registrado nas atas [Ata S2_03](/Projeto/Atas/Atas_Sg2/ata-S2-03-2026-09-16.md) e [Ata S2_04](/Projeto/Atas/Atas_Sg2/ata-S2-04-2026-09-17.md)), sendo o trabalho final consolidado na ferramenta visual Miro.
 
 ## 5. Rastreabilidade & Elos com Outros Artefatos (visão consolidada)
 
