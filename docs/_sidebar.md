@@ -48,6 +48,7 @@
 - **Projeto**
   - Atas
     - [Reunião Geral 01 — 11/09/2026](/Projeto/Atas/ata-G01-2026-09-11.md)
+    - [Reunião Geral 02 — 18/09/2026](/Projeto/Atas/ata-G02-2026-09-18.md)
     - SubEquipe_01
       - [S1_01 — 15/09/2026](/Projeto/Atas/Atas_Sg1/ata-S1-01-2026-09-15.md)
     - SubEquipe_02
