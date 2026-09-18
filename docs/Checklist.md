@@ -12,7 +12,7 @@ Legenda: ✅ concluído · 🟡 em andamento · ⬜ não iniciado.
 | -- | -- | -- | -- | -- |
 | 🔵 [SubEquipe_01](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.SubEquipe_01.md) | 🟡 Em andamento | 🟡 Em andamento | ⬜ Não iniciado | Metodologia, Rastreabilidade e Referências ✅ |
 | 🟢 [SubEquipe_02](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.SubEquipe_02.md) | 🟡 Em andamento (0 diagramas inseridos) | 🟡 Em andamento (0 diagramas inseridos) | ⬜ Não iniciado (template) | FOCO_04 Engenharia Reversa ✅ |
-| 🟠 [SubEquipe_03](/Base/Relatórios/1.1.3.SubEquipe_03.md) | ⬜ Não iniciado | ⬜ Não iniciado | ⬜ Não iniciado | — |
+| 🟠 [SubEquipe_03](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.SubEquipe_03.md) | ✅ Concluído (5 diagramas) | ✅ Concluído (7 diagramas) | ✅ Concluído | Metodologia, Rastreabilidade, Versionamentos, Referências e critérios de aprofundamento ✅ |
 
 ## 🔵 SubEquipe_01 — Transmissão ao vivo, UGC, Clipagem
 
@@ -42,16 +42,20 @@ Legenda: ✅ concluído · 🟡 em andamento · ⬜ não iniciado.
 
 | Item | Status | Já feito | Falta |
 | -- | -- | -- | -- |
-| [FOCO_01 — Modelagem Estática](/Base/Relatórios/1.1.3.SubEquipe_03.md) | ⬜ | — | Página é só o template original da professora (instruções e linha de exemplo "Fulano"); sem participantes, sem diagrama. |
-| FOCO_02 — Modelagem Dinâmica | ⬜ | — | Idem — mesmo arquivo, template não preenchido. |
-| FOCO_03 — IA Generativa | ⬜ | — | Idem — mesmo arquivo, template não preenchido. |
-| Versionamentos | ⬜ | — | Só a tabela de exemplo; nenhuma contribuição real registrada. |
-| Atas da subequipe | ⬜ | Membros presentes na [Reunião Geral 01](/Projeto/Atas/ata-G01-2026-09-11.md). | Nenhuma ata própria da SubEquipe_03 — não existe pasta `Atas_Sg3`, diferente de `Atas_Sg1` e `Atas_Sg2`. |
+| [FOCO_01 — Modelagem Estática](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.1.Foco01.ModelagemEstatica.md) | ✅ | Cinco diagramas de classes em PlantUML, SVG e PNG: arquitetura integrada, visão geral do domínio, autenticação e controle de acesso, moderação e telemetria. O foco documenta recursos UML, decisões `DE01`–`DE10`, limitações e senso crítico. | — |
+| [FOCO_02 — Modelagem Dinâmica](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.2.Foco02.ModelagemDinamica.md) | ✅ | Sete diagramas comportamentais (`DYN-01` a `DYN-07`): três de sequência, um de estados e três de atividades. Os fluxos cobrem moderação, segurança de conteúdo, telemetria, audiência e qualidade, com requisitos `RD-M01`–`RD-M04` e `RD-T01`–`RD-T03`, decisões `DD01`–`DD09`, cenários alternativos e visualização com zoom. | — |
+| [FOCO_03 — IA Generativa](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.3.Foco03.IAGenerativa.md) | ✅ | Pontos de vista aprofundados de Eduardo, Hugo e Philipe; lições aprendidas; exemplos concretos de acertos, alucinações e correções; registro das interações; síntese crítica e diretrizes de uso responsável. | — |
+| [Metodologia](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.Metodologia.md) | ✅ | Acordos de trabalho, divisão por domínio, *Definition of Done*, revisão cruzada, ferramentas, reunião própria e checklist formal de qualidade documentados. | — |
+| [Rastreabilidade & Elos](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Rastreabilidade.md) | ✅ | Matrizes `RST-01`–`RST-05` e `RST-D01`–`RST-D07`, catálogo de 30 evidências (`EV-01`–`EV-30`) e matriz cruzada entre fontes, classes, requisitos e fluxos. | — |
+| [Versionamentos & Participações](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.6.Versionamentos.md) | ✅ | Contribuições de Eduardo, Hugo e Philipe detalhadas por foco, com datas, artefatos comprobatórios, autoria, revisão e históricos incrementais. | — |
+| [Referências](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.8.Referencias.md) | ✅ | Referências em formato ABNT organizadas por foco, fontes normativas e técnicas, insumos empíricos da Entrega 01 e matriz que relaciona 44 classes UML às respectivas fontes. | — |
+| [Ata da subequipe](/Projeto/Atas/Atas_Sg3/ata-S3-01-2026-09-15.md) | ✅ | Reunião presencial `S3_01` registrada com participantes, pauta, decisões `D01`–`D05`, divisão dos artefatos e encaminhamentos `A01`–`A07`; também há vínculo com a [Reunião Geral 01](/Projeto/Atas/ata-G01-2026-09-11.md). | — |
+| [Critérios de aprofundamento](/Base/1.3.IniciativasExtras.md#subequipe_03) | ✅ | Fundamentação de artefatos e decisões; rastros metodológicos do trabalho em equipe; emprego combinado de diagramas de classes, sequência, estados e atividades; pontos de vista fundamentados, claros e críticos. | — |
 
 ## Transversais do módulo (Base/)
 
 | Item | Status | Observação |
 | -- | -- | -- |
-| [1.2 Participações — Modelagem](/Base/1.2.ParticipacoesModelagem.md) | ⬜ | As 3 seções (uma por subequipe) só têm a linha de exemplo ("Fulano"/"Beltrano"/"Ciclano"); nenhuma participação real preenchida. |
-| [1.3 Iniciativas Extras](/Base/1.3.IniciativasExtras.md) | ⬜ | Página vazia (só o título). A SubEquipe_02 já tem uma iniciativa extra pronta (FOCO_04 — Engenharia Reversa) que pode ser referenciada aqui. |
+| [1.2 Participações — Modelagem](/Base/1.2.ParticipacoesModelagem.md) | 🟡 | Participações das SubEquipes 01 e 03 preenchidas com significância e comprobatórios; falta consolidar a SubEquipe 02. |
+| [1.3 Iniciativas Extras](/Base/1.3.IniciativasExtras.md) | 🟡 | Iniciativas da SubEquipe 01 e critérios de aprofundamento da SubEquipe 03 registrados com comprobatórios; falta incorporar a iniciativa de engenharia reversa da SubEquipe 02. |
 | Home ([README.md](/README.md)) | ⬜ | Tabela de alunos com linha placeholder (`xx/xxxxxx`); seções "Sobre" e "Screenshots da Segunda Entrega" vazias. |
